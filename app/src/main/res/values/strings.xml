@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Facilito</string>
+    <string name="wallpaper">Wallpaper</string>
+    <string name="facilito">Facilito</string>
+    <string name="slogan">El trabajo local más cerca de ti</string>
+    <string name="logo">logo</string>
+    <string name="iniciar_sesi_n">Iniciar sesión</string>
+    <string name="mail">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="loginQ">¿No tienes cuenta?</string>
+    <string name="registrate">Registrate</string>
+</resources>
