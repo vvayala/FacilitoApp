@@ -10,4 +10,11 @@
     <string name="ingresar">Ingresar</string>
     <string name="loginQ">¿No tienes cuenta?</string>
     <string name="registrate">Registrate</string>
+    <string name="facilitoMayus">FACILITO</string>
+    <string name="bienvenido">¡Bienvenido!</string>
+    <string name="registroOpcionesQ1">¿Qué deseas hacer?</string>
+    <string name="clienteQ1">Encuentra fácilmente al profesional que necesitas.</string>
+    <string name="cliente">Cliente</string>
+    <string name="proveedorQ1">Ofrece tus servicios y consigue más clientes.</string>
+    <string name="proveedor">Proveedor</string>
 </resources>
