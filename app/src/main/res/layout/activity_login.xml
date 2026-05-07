@@ -12,7 +12,6 @@
         android:id="@+id/imgWpBottom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:contentDescription="@string/wallpaper"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imgWpTop"
-        app:srcCompat="@drawable/logo1" />
+        app:srcCompat="@drawable/icon_logo1" />
 
     <TextView
         android:id="@+id/txtIniciarSesion"
@@ -91,7 +90,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/login_style"
+        android:background="@drawable/button_login"
         android:ems="10"
         android:fontFamily="@font/inclusive_sans"
         android:hint="@string/mail"
@@ -109,7 +108,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/login_style"
+        android:background="@drawable/button_login"
         android:ems="10"
         android:fontFamily="@font/inclusive_sans"
         android:hint="@string/password"
@@ -146,26 +145,28 @@
         android:layout_height="48dp"
         android:fontFamily="@font/inclusive_sans"
         android:text="@string/loginQ"
+        android:textColor="#F68031"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/txtRegistro"
-        app:layout_constraintHorizontal_chainStyle="packed"/>
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
 
     <TextView
         android:id="@+id/txtRegistro"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/registrate"
-        android:textSize="14sp"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
+        android:fontFamily="@font/inclusive_sans"
+        android:paddingLeft="3dp"
+        android:text="@string/registrate"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/txtRegistroLabel"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
 
 
 
