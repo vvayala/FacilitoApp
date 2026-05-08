@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FacilitoApp">
         <activity
+            android:name=".RegistroCliente"
+            android:exported="false" />
+        <activity
+            android:name=".RegistroProveedor"
+            android:exported="false" />
+        <activity
             android:name=".RegistroOpciones"
             android:exported="false" />
         <activity

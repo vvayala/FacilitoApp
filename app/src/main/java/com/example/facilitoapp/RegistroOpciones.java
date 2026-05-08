@@ -1,6 +1,10 @@
 package com.example.facilitoapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +13,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class RegistroOpciones extends AppCompatActivity {
+
+    Button btnCliente, btnProveedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +25,25 @@ public class RegistroOpciones extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        btnCliente = findViewById(R.id.btnCliente);
+        btnProveedor = findViewById(R.id.btnProveedor);
+
+        btnCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistroOpciones.this, RegistroCliente.class);
+                startActivity(intent);
+            }
+        });
+
+        btnProveedor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(RegistroOpciones.this, RegistroProveedor.class);
+                startActivity(intent2);
+            }
         });
     }
 }

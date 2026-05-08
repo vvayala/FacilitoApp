@@ -17,4 +17,25 @@
     <string name="cliente">Cliente</string>
     <string name="proveedorQ1">Ofrece tus servicios y consigue más clientes.</string>
     <string name="proveedor">Proveedor</string>
+    <string name="apellidoEjemplo">Pérez</string>
+    <string name="apellido">Apellido:</string>
+    <string name="telefono">Teléfono:</string>
+    <string name="correo">Correo:</string>
+    <string name="contrasena">Contraseña:</string>
+    <string name="registro">Registro</string>
+    <string name="nombreEjemplo">Juan</string>
+    <string name="nombre">Nombre:</string>
+    <string name="ejemploTelefono">1234-5678</string>
+    <string name="emailEjemplo">juan.perez@gmail.com</string>
+    <string name="contrasenaEjemplo">********</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="ejemploNombreNegocio">Carpintero Juan</string>
+    <string name="lblNombreNegocio">Nombre del negocio:</string>
+    <string name="descripcion">Descripción:</string>
+    <string name="adjuntar_foto">Adjuntar foto:</string>
+    <string name="mi_negocio">Mi negocio</string>
+    <string name="categoria">Categoría:</string>
+    <string name="listo">Listo</string>
+    <string name="ejemploDescripcion">Hago puertas y cortinas de madera.</string>
+    <string name="adjuntar">Adjuntar foto</string>
 </resources>
