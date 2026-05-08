@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FacilitoApp">
         <activity
+            android:name=".SolicitarServicio"
+            android:exported="false" />
+        <activity
             android:name=".RegistroCliente"
             android:exported="false" />
         <activity

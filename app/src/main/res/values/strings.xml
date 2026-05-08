@@ -38,4 +38,11 @@
     <string name="listo">Listo</string>
     <string name="ejemploDescripcion">Hago puertas y cortinas de madera.</string>
     <string name="adjuntar">Adjuntar foto</string>
+    <string name="enviar_solicitud">Enviar solicitud</string>
+    <string name="descripcion_problema">Necesito una puerta nueva y de color negro. Comparto foto.</string>
+    <string name="lbl_describir_problema">Describe tu problema:</string>
+    <string name="solicitud_de_servicio">Solicitud de servicio</string>
+    <string name="carpinteria">Carpintería</string>
+    <string name="titulo">Título:</string>
+    <string name="arreglar_puerta">Arreglar puerta</string>
 </resources>
