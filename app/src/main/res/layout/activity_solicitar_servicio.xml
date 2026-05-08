@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SolicitarServicio">
+
+    <ImageView
+        android:id="@+id/imgWp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha=".5"
+        android:contentDescription="@string/wallpaper"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/wp6" />
+
+    <Button
+        android:id="@+id/btnEnviarSolicitud"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_registro_opciones"
+        android:fontFamily="@font/inclusive_sans"
+        android:text="@string/enviar_solicitud"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llFotos" />
+
+    <LinearLayout
+        android:id="@+id/llFotos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion2">
+
+        <TextView
+            android:id="@+id/lblAdjuntarFoto2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inclusive_sans"
+            android:text="@string/adjuntar_foto"
+            android:textColor="#7640BD"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imgAdjuntar2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/adjuntar"
+            android:paddingStart="8dp"
+            app:srcCompat="@drawable/icon_add" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/txtDescripcion2"
+        android:layout_width="0dp"
+        android:layout_height="108dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_login"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/descripcion_problema"
+        android:inputType="textMultiLine"
+        android:padding="6dp"
+        android:textColor="#7640BD"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblDescribirProblema" />
+
+    <TextView
+        android:id="@+id/lblDescribirProblema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inclusive_sans"
+        android:gravity="center_vertical"
+        android:text="@string/lbl_describir_problema"
+        android:textColor="#7640BD"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llTitulo" />
+
+    <TextView
+        android:id="@+id/lblApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inclusive_sans_italic"
+        android:text="@string/facilitoMayus"
+        android:textAlignment="viewStart"
+        android:textColor="#7640BD"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblSolicitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/inclusive_sans"
+        android:text="@string/solicitud_de_servicio"
+        android:textColor="#7640BD"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblApp" />
+
+    <TextView
+        android:id="@+id/lblCategoria2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inclusive_sans"
+        android:text="@string/categoria"
+        android:textColor="#7640BD"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblSolicitud" />
+
+    <TextView
+        android:id="@+id/lblCatSelecionada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/inclusive_sans"
+        android:text="@string/carpinteria"
+        android:textColor="#7640BD"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/lblCategoria2"
+        app:layout_constraintTop_toBottomOf="@+id/lblSolicitud" />
+
+    <LinearLayout
+        android:id="@+id/llTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblCategoria2">
+
+        <TextView
+            android:id="@+id/lblTitulo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inclusive_sans"
+            android:gravity="center_vertical"
+            android:text="@string/titulo"
+            android:textColor="#7640BD"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/txtTituloProblema"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_login"
+            android:ems="10"
+            android:fontFamily="@font/inclusive_sans"
+            android:gravity="center_vertical"
+            android:hint="@string/arreglar_puerta"
+            android:inputType="text"
+            android:paddingStart="6dp"
+            android:textColor="#7640BD"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
