@@ -64,5 +64,8 @@
     <string name="hintPassword">Contraseña</string>
     <string name="txtLogin">Ingresar</string>
     <string name="txtNewAccountMessage">¿No tienes cuenta?</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="guardar">Guardar</string>
+    <string name="sonido">Sonido</string>
 
 </resources>

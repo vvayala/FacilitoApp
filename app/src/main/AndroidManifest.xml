@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FacilitoApp">
         <activity
+            android:name=".Ajustes"
+            android:exported="false" />
+        <activity
             android:name=".Notificaciones"
             android:exported="false" />
         <activity
@@ -22,6 +25,8 @@
             android:exported="false" />
         <activity
             android:name=".ReviewItem"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
