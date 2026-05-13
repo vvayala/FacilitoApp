@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FacilitoApp">
         <activity
+            android:name=".Notificaciones"
+            android:exported="false" />
+        <activity
+            android:name=".NotificacionItem"
+            android:exported="false" />
+        <activity
             android:name=".Reviews"
             android:exported="false" />
         <activity
