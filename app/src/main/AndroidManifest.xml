@@ -22,6 +22,10 @@
             android:exported="false" />
         <activity
             android:name=".ReviewItem"
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".SolicitarServicio"
