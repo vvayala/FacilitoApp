@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FacilitoApp">
         <activity
+            android:name=".Reviews"
+            android:exported="false" />
+        <activity
+            android:name=".ReviewItem"
             android:name=".LoginActivity"
             android:exported="false" />
         <activity

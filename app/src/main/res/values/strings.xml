@@ -45,6 +45,9 @@
     <string name="carpinteria">Carpintería</string>
     <string name="titulo">Título:</string>
     <string name="arreglar_puerta">Arreglar puerta</string>
+    <string name="usuario">Usuario</string>
+    <string name="comentario">Este es un comentario de ejemplo.</string>
+    <string name="resenas">Reseñas</string>
 
 
     <!--    STRINGS A UTILIZAR-->
