@@ -26,12 +26,6 @@
             android:name=".Notificaciones"
             android:exported="false" />
         <activity
-            android:name=".MainScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Ajustes"
-            android:exported="false" />
-        <activity
             android:name=".Reviews"
             android:exported="false" />
         <activity
