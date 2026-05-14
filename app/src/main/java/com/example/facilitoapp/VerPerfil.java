@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,11 +25,11 @@ public class VerPerfil extends AppCompatActivity {
 
     private SharedPreferences prefs;
 
-    private EditText edtNombre;
-    private EditText edtApellidos;
-    private EditText edtDui;
-    private EditText edtTelefono;
-    private EditText edtDireccion;
+    private TextView edtNombre;
+    private TextView edtApellidos;
+    private TextView edtDui;
+    private TextView edtTelefono;
+    private TextView edtDireccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

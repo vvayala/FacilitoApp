@@ -8,33 +8,15 @@
     android:background="@drawable/wp5"
     tools:context=".VerPerfil">
 
-    <include
-        android:id="@+id/includeHeader"
-        layout="@layout/view_header"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <include
-        android:id="@+id/includeBottomBar"
-        layout="@layout/view_bottom_bar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollProfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/includeBottomBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeHeader">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inclusive_sans"
                     android:text="Mi Perfil"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/purple_primary"
                     android:textSize="26sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -72,17 +54,34 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/imgProfileUser"
-                android:layout_width="86dp"
-                android:layout_height="86dp"
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="12dp"
-                android:contentDescription="@string/usuario"
-                android:src="@drawable/icon_user" />
+                android:layout_marginTop="12dp">
+
+                <ImageView
+                    android:id="@+id/imgProfileUser"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:contentDescription="@string/usuario"
+                    android:src="@drawable/icon_user_purple"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/icon_user" />
+
+                <ImageButton
+                    android:id="@+id/btnEditarPerfil"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="bottom|end"
+                    android:contentDescription="@string/editar"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_edit"
+                    app:backgroundTint="#00FFFFFF" />
+            </FrameLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,19 +93,17 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edtNombre"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/edittext_rounded"
                 android:enabled="false"
                 android:fontFamily="@font/inclusive_sans"
-                android:hint="John"
-                android:inputType="textPersonName"
-                android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
+                android:textColor="@color/purple_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="John" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -118,19 +115,17 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edtApellidos"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/edittext_rounded"
                 android:enabled="false"
                 android:fontFamily="@font/inclusive_sans"
-                android:hint="Doe"
-                android:inputType="textPersonName"
-                android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
+                android:textColor="@color/purple_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Doe" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,19 +137,17 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edtDui"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/edittext_rounded"
                 android:enabled="false"
                 android:fontFamily="@font/inclusive_sans"
-                android:hint="01234567-8"
-                android:inputType="text"
-                android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
+                android:textColor="@color/purple_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="01234567-8" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -166,19 +159,17 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edtTelefono"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/edittext_rounded"
                 android:enabled="false"
                 android:fontFamily="@font/inclusive_sans"
-                android:hint="7123-4567"
-                android:inputType="phone"
-                android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
+                android:textColor="@color/purple_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="7123-4567" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -190,34 +181,18 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edtDireccion"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/edittext_rounded"
                 android:enabled="false"
                 android:fontFamily="@font/inclusive_sans"
-                android:hint="San Salvador, San Salvador"
-                android:inputType="textPostalAddress"
-                android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/btnEditarPerfil"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="18dp"
-                android:background="@drawable/button_registro_opciones"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Editar"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
+                android:textColor="@color/purple_primary"
                 android:textSize="20sp"
-                app:backgroundTint="@null" />
+                android:textStyle="bold"
+                tools:text="San Salvador, San Salvador" />
 
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
