@@ -8,7 +8,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Notificaciones extends AppCompatActivity {
+public class
+Notificaciones extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
