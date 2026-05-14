@@ -1,9 +1,7 @@
 package com.example.facilitoapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,30 +9,29 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class RegistroProveedor extends AppCompatActivity {
+public class ChatConversationActivity extends AppCompatActivity {
 
-    private Button btnListo;
+    public static final String EXTRA_CHAT_TITLE = "extra_chat_title";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_registro_proveedor);
+        setContentView(R.layout.activity_chat_conversation);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        btnListo = findViewById(R.id.btnListo);
+        TextView txtConversationTitle = findViewById(R.id.txtConversationTitle);
+        TextView btnBackConversation = findViewById(R.id.btnBackConversation);
 
-        btnListo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegistroProveedor.this, SolicitarServicio.class);
-                startActivity(intent);
-            }
-        });
+        String chatTitle = getIntent().getStringExtra(EXTRA_CHAT_TITLE);
+        if (chatTitle != null && !chatTitle.isEmpty()) {
+            txtConversationTitle.setText(chatTitle);
+        }
+
+        btnBackConversation.setOnClickListener(v -> finish());
     }
 }
-

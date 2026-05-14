@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/headerMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="20dp"
+    android:paddingTop="14dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="14dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imgHeaderUser"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@string/usuario"
+        android:src="@drawable/icon_user" />
+
+    <TextView
+        android:id="@+id/txtHeaderTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/inclusive_sans_italic"
+        android:gravity="center"
+        android:text="@string/facilitoMayus"
+        android:textColor="@color/orange_primary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:id="@+id/imgHeaderNotification"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:contentDescription="@string/notificaciones"
+        android:src="@drawable/icon_notification" />
+
+</LinearLayout>
