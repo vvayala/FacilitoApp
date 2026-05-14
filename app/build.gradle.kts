@@ -24,7 +24,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"APIURL\"")
+            buildConfigField("String", "BASE_URL", "\"https://facilitobackend.onrender.com/api/\"")
         }
         release {
             isMinifyEnabled = false
@@ -32,7 +32,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"APIURL\"")
+            buildConfigField("String", "BASE_URL", "\"https://facilitobackend.onrender.com/api/\"")
         }
     }
 

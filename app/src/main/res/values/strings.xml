@@ -39,7 +39,7 @@
     <string name="ejemploDescripcion">Hago puertas y cortinas de madera.</string>
     <string name="adjuntar">Adjuntar foto</string>
     <string name="enviar_solicitud">Enviar solicitud</string>
-    <string name="descripcion_problema">Necesito una puerta nueva y de color negro. Comparto foto.</string>
+    <string name="descripcion_problema">Necesito instalar una repisa larga en mi habitacion.</string>
     <string name="lbl_describir_problema">Describe tu problema:</string>
     <string name="solicitud_de_servicio">Solicitud de servicio</string>
     <string name="carpinteria">Carpintería</string>
@@ -55,4 +55,13 @@
     <string name="resena1">María G. - Excelente trabajo en mi closet. Muy profesional y puntual. ★★★★★</string>
     <string name="resena2">Carlos R. - Muy buenas terminaciones. Recomendado. ★★★★☆</string>
     <string name="resena3">Ana L. - Cumplió con el tiempo acordado. Buena relación calidad-precio. ★★★★★</string>
+    <string name="misSolicitudes">My Requests</string>
+    <string name="solicitudesCount">You have 1 request</string>
+    <string name="solicitudesRecibidas">Received Requests</string>
+    <string name="solicitudesRecibidasCount">You have 2 new requests</string>
+    <string name="fechaEjemplo">May 14, 2026</string>
+    <string name="estadoPendiente">Pending</string>
+    <string name="estadoNuevo">New</string>
+    <string name="aceptar">Accept</string>
+    <string name="rechazar">Decline</string>
 </resources>
