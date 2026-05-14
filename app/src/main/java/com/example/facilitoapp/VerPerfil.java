@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,29 +52,11 @@ public class VerPerfil extends AppCompatActivity {
         edtTelefono = findViewById(R.id.edtTelefono);
         edtDireccion = findViewById(R.id.edtDireccion);
 
-        Button btnEditarPerfil = findViewById(R.id.btnEditarPerfil);
+        ImageButton btnEditarPerfil = findViewById(R.id.btnEditarPerfil);
         btnEditarPerfil.setOnClickListener(v -> {
             Intent intent = new Intent(VerPerfil.this, EditarPerfil.class);
             startActivity(intent);
         });
-
-        ImageView imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
-        if (imgHeaderNotification != null) {
-            imgHeaderNotification.setOnClickListener(v -> {
-                Intent intent = new Intent(VerPerfil.this, Notificaciones.class);
-                startActivity(intent);
-            });
-        }
-
-        ImageView imgHeaderSettings = findViewById(R.id.imgHeaderSettings);
-        if (imgHeaderSettings != null) {
-            imgHeaderSettings.setOnClickListener(v -> {
-                Intent intent = new Intent(VerPerfil.this, Ajustes.class);
-                startActivity(intent);
-            });
-        }
-
-        FooterNavigationHelper.setupHomeNavigation(this);
     }
 
     @Override

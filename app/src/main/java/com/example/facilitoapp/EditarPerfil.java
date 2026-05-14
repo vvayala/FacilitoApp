@@ -114,18 +114,6 @@ public class EditarPerfil extends AppCompatActivity {
             exitEditMode();
         });
 
-        ImageView imgHeaderUser = findViewById(R.id.imgHeaderUser);
-        if (imgHeaderUser != null) {
-            imgHeaderUser.setOnClickListener(v -> navigateWithConfirm(new Intent(this, VerPerfil.class)));
-        }
-
-        ImageView imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
-        if (imgHeaderNotification != null) {
-            imgHeaderNotification.setOnClickListener(v -> navigateWithConfirm(new Intent(this, Notificaciones.class)));
-        }
-
-        FooterNavigationHelper.setupHomeNavigation(this);
-        wireFooterNavigationWithConfirm();
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
