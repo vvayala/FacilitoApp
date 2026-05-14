@@ -203,6 +203,14 @@
             android:textColor="#7640BD"
             android:textSize="20sp" />
     </LinearLayout>
+    <include
+        android:id="@+id/includeBottomBar"
+        layout="@layout/view_bottom_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

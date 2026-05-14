@@ -15,83 +15,9 @@
         android:contentDescription="@string/wallpaper"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/wp5" />
-
-    <EditText
-        android:id="@+id/txtApellido"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/apellidoEjemplo"
-        android:inputType="text"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblApellido" />
-
-    <TextView
-        android:id="@+id/lblApellido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/apellido"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre"/>
-
-    <TextView
-        android:id="@+id/lblTelefono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/telefono"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtApellido"/>
-
-    <TextView
-        android:id="@+id/lblCorreo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/correo"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTelefono" />
-
-    <TextView
-        android:id="@+id/lblContrasena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/contrasena"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCorreo" />
 
     <TextView
         android:id="@+id/lblApp"
@@ -100,7 +26,6 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/inclusive_sans_italic"
         android:text="@string/facilitoMayus"
-        android:textAlignment="viewStart"
         android:textColor="#F68031"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -122,120 +47,206 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblApp" />
 
-    <EditText
-        android:id="@+id/txtNombre"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/nombreEjemplo"
-        android:inputType="text"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblNombre" />
-
-    <TextView
-        android:id="@+id/lblNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/nombre"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRegistro"/>
-
-    <EditText
-        android:id="@+id/txtTelefono"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/ejemploTelefono"
-        android:inputType="phone"
-        android:maxLength="8"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblTelefono" />
-
-    <EditText
-        android:id="@+id/txtCorreo"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/emailEjemplo"
-        android:inputType="textEmailAddress"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblCorreo" />
-
-    <EditText
-        android:id="@+id/txtContrasena"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/contrasenaEjemplo"
-        android:inputType="textPassword"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblContrasena" />
-
-    <Button
-        android:id="@+id/btnRegistro"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_registro_opciones"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/registrarse"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:backgroundTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtContrasena" />
-
     <ImageView
         android:id="@+id/imgUsuario2"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
-        android:layout_marginBottom="16dp"
         android:contentDescription="@string/cliente"
-        app:layout_constraintBottom_toTopOf="@+id/lblNombre"
+        app:layout_constraintBottom_toBottomOf="@+id/lblRegistro"
         app:layout_constraintStart_toEndOf="@+id/lblRegistro"
+        app:layout_constraintTop_toTopOf="@+id/lblRegistro"
         app:srcCompat="@drawable/icon_user" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblRegistro">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/lblNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/nombre"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_login"
+                android:ems="10"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="@string/nombreEjemplo"
+                android:inputType="text"
+                android:paddingStart="6dp"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/lblApellido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/apellido"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtApellido"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_login"
+                android:ems="10"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="@string/apellidoEjemplo"
+                android:inputType="text"
+                android:paddingStart="6dp"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/lblTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/telefono"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_login"
+                android:ems="10"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="@string/ejemploTelefono"
+                android:inputType="phone"
+                android:maxLength="8"
+                android:paddingStart="6dp"
+                android:textColor="#7640BD" />
+
+            <TextView
+                android:id="@+id/lblDui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/dui"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtDui"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_login"
+                android:ems="10"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="@string/duiEjemplo"
+                android:inputType="text"
+                android:paddingStart="6dp"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/lblCorreo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/correo"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_login"
+                android:ems="10"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="@string/emailEjemplo"
+                android:inputType="textEmailAddress"
+                android:paddingStart="6dp"
+                android:textColor="#7640BD" />
+
+            <TextView
+                android:id="@+id/lblContrasena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/contrasena"
+                android:textColor="#7640BD"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_login"
+                android:ems="10"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="@string/contrasenaEjemplo"
+                android:inputType="textPassword"
+                android:paddingStart="6dp"
+                android:textColor="#7640BD" />
+
+            <Button
+                android:id="@+id/btnRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_registro_opciones"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/registrarse"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

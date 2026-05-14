@@ -8,7 +8,7 @@ public interface ApiService {
 
     // Registrar un nuevo usuario
     @POST("auth/register")
-    Call<LoginResponse> registerUser(@Body User user);
+    Call<LoginResponse> registerUser(@Body RegisterRequest request);
 
     // Login de usuario
     @POST("auth/login")

@@ -26,6 +26,8 @@
     <string name="nombreEjemplo">Juan</string>
     <string name="nombre">Nombre:</string>
     <string name="ejemploTelefono">1234-5678</string>
+    <string name="dui">DUI:</string>
+    <string name="duiEjemplo">12345678-9</string>
     <string name="emailEjemplo">juan.perez@gmail.com</string>
     <string name="contrasenaEjemplo">********</string>
     <string name="registrarse">Registrarse</string>

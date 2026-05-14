@@ -19,6 +19,21 @@
         <activity
             android:name=".MainScreen"
             android:exported="false" />
+        <activity
+            android:name=".ChatsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatConversationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyRequests"
+            android:exported="false" />
+        <activity
+            android:name=".VerPerfil"
+            android:exported="false" />
+        <activity
+            android:name=".EditarPerfil"
+            android:exported="false" />
       <activity
             android:name=".NotificacionItem"
             android:exported="false" />

@@ -5,236 +5,199 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wp5"
     tools:context=".EditarPerfil">
 
-    <ImageView
-        android:id="@+id/imgWp"
+    <include
+        android:id="@+id/includeHeader"
+        layout="@layout/view_header"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        android:contentDescription="@string/wallpaper"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/wp5" />
-
-    <TextView
-        android:id="@+id/lblApp"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans_italic"
-        android:text="@string/facilitoMayus"
-        android:textAlignment="viewStart"
-        android:textColor="#F68031"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgUsuario2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/cliente"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblApp"
-        app:srcCompat="@drawable/icon_user" />
-
-    <TextView
-        android:id="@+id/lblEditarPerfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/editarPerfil"
-        android:textColor="#F68031"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgUsuario2" />
-
-    <TextView
-        android:id="@+id/lblNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/nombre"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblEditarPerfil"/>
-
-    <EditText
-        android:id="@+id/txtNombre"
+    <include
+        android:id="@+id/includeBottomBar"
+        layout="@layout/view_bottom_bar"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/nombreEjemplo"
-        android:inputType="text"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblNombre" />
-
-    <TextView
-        android:id="@+id/lblApellido"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/apellido"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtNombre"/>
-
-    <EditText
-        android:id="@+id/txtApellido"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/apellidoEjemplo"
-        android:inputType="text"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblApellido" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/lblTelefono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/telefono"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtApellido"/>
-
-    <EditText
-        android:id="@+id/txtTelefono"
+    <ScrollView
+        android:id="@+id/scrollEditProfile"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/ejemploTelefono"
-        android:inputType="phone"
-        android:maxLength="8"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/includeBottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblTelefono" />
+        app:layout_constraintTop_toBottomOf="@+id/includeHeader">
 
-    <TextView
-        android:id="@+id/lblCorreo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/correo"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTelefono" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="24dp">
 
-    <EditText
-        android:id="@+id/txtCorreo"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:ems="10"
-        android:fontFamily="@font/inclusive_sans"
-        android:hint="@string/emailEjemplo"
-        android:inputType="textEmailAddress"
-        android:paddingStart="6dp"
-        android:textColor="#7640BD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblCorreo" />
+            <TextView
+                android:id="@+id/txtProfileTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="Mi Perfil"
+                android:textColor="@android:color/black"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/lblFotoPerfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/fotoPerfil"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtCorreo" />
+            <ImageView
+                android:id="@+id/imgProfileUser"
+                android:layout_width="86dp"
+                android:layout_height="86dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:contentDescription="@string/usuario"
+                android:src="@drawable/icon_user" />
 
-    <Button
-        android:id="@+id/btnAdjuntarFoto"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_login"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/adjuntar"
-        android:textColor="#7640BD"
-        android:textSize="16sp"
-        app:backgroundTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lblFotoPerfil" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/nombre"
+                android:textColor="@color/purple_primary_900"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnGuardar"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_registro_opciones"
-        android:fontFamily="@font/inclusive_sans"
-        android:text="@string/guardarCambios"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:backgroundTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAdjuntarFoto" />
+            <EditText
+                android:id="@+id/edtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_rounded"
+                android:enabled="false"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="John"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="14dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="Apellidos:"
+                android:textColor="@color/purple_primary_900"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_rounded"
+                android:enabled="false"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="Doe"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="14dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/dui"
+                android:textColor="@color/purple_primary_900"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtDui"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_rounded"
+                android:enabled="false"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="01234567-8"
+                android:inputType="text"
+                android:paddingHorizontal="14dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="@string/telefono"
+                android:textColor="@color/purple_primary_900"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_rounded"
+                android:enabled="false"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="7123-4567"
+                android:inputType="phone"
+                android:paddingHorizontal="14dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="Dirección:"
+                android:textColor="@color/purple_primary_900"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_rounded"
+                android:enabled="false"
+                android:fontFamily="@font/inclusive_sans"
+                android:hint="San Salvador, San Salvador"
+                android:inputType="textPostalAddress"
+                android:paddingHorizontal="14dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnEditarGuardar"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/button_registro_opciones"
+                android:fontFamily="@font/inclusive_sans"
+                android:text="Editar"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:backgroundTint="@null" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
