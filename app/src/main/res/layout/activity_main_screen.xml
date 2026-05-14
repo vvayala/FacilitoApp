@@ -8,6 +8,18 @@
     android:background="@android:color/transparent"
     tools:context=".MainScreen">
 
+    <ImageView
+        android:id="@+id/imgWpMain"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:rotation="180"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_login" />
+
     <include
         android:id="@+id/includeHeader"
         layout="@layout/view_header"
@@ -22,6 +34,7 @@
         layout="@layout/view_bottom_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -31,6 +44,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:paddingBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/includeBottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="Favoritos"
-                android:textColor="@color/purple_primary_900"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -292,7 +306,7 @@
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="Categorías"
-                android:textColor="@color/orange_primary"
+                android:textColor="@color/purple_primary_900"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -421,7 +435,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="Destacados"
-                android:textColor="@color/purple_primary_900"
+                android:textColor="#311845"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

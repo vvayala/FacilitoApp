@@ -1,37 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bottomBar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/purple_primary_900"
-    android:gravity="center"
-    android:orientation="horizontal"
-    android:paddingStart="26dp"
-    android:paddingTop="8dp"
-    android:paddingEnd="26dp"
-    android:paddingBottom="8dp">
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
 
-    <ImageView
-        android:id="@+id/navHome"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/facilito"
-        android:src="@drawable/home_button_orange" />
+    <!-- Franja de sombra arriba del footer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_gravity="top"
+        android:background="@drawable/footer_shadow" />
 
-    <ImageView
-        android:id="@+id/navLocation"
-        android:layout_width="44dp"
-        android:layout_height="64dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/solicitud_de_servicio"
-        android:src="@drawable/location_footer_icon_orange" />
+    <!-- Footer bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="26dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="8dp">
 
-    <ImageView
-        android:id="@+id/navChat"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/notificaciones"
-        android:src="@drawable/chats_icon_footer_orange" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/navHome"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:contentDescription="@string/facilito"
+            android:src="@drawable/home_button_orange" />
+
+        <ImageView
+            android:id="@+id/navLocation"
+            android:layout_width="44dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/solicitud_de_servicio"
+            android:paddingTop="8dp"
+            android:src="@drawable/location_footer_icon_orange" />
+
+        <ImageView
+            android:id="@+id/navChat"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:contentDescription="@string/notificaciones"
+            android:src="@drawable/chats_icon_footer_orange" />
+    </LinearLayout>
+</FrameLayout>
