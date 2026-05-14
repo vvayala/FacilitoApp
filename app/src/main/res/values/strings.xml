@@ -63,4 +63,18 @@
     <string name="cerrar_notificacion">Cerrar notificacion</string>
     <string name="detalles">detalles</string>
     <string name="dummy_date">12/1/2026</string>
+
+    <!--    STRINGS A UTILIZAR-->
+    <string name="background_login_description">Background Login</string>
+    <string name="txtTitleApp">FACILITO</string>
+    <string name="txtSlogan">El trabajo local más cerca de ti</string>
+    <string name="txtLoginTitle">Iniciar Sesión</string>
+    <string name="hintEmail">Ingrese su email</string>
+    <string name="hintPassword">Contraseña</string>
+    <string name="txtLogin">Ingresar</string>
+    <string name="txtNewAccountMessage">¿No tienes cuenta?</string>
+    <string name="resenas">Reseñas</string>
+    <string name="usuario">Usuario</string>
+    <string name="comentario">Comentario\n</string>
+    <string name="verMasResenas">Ver mas reseñas</string>
 </resources>
