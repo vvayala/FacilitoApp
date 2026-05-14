@@ -59,4 +59,9 @@
     <string name="notificaciones">Notificaciones</string>
     <string name="sonido">Sonido</string>
     <string name="guardar">Guardar</string>
+    <string name="titulo_notificacion">Notificacion</string>
+    <string name="cerrar_notificacion">Cerrar notificacion</string>
+    <string name="detalles">detalles</string>
+    <string name="dummy_date">12/1/2026</string>
+    <string name="notificaciones">Notificaciones</string>
 </resources>
