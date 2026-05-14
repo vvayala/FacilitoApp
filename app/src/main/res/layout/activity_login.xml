@@ -97,12 +97,31 @@
             android:background="@drawable/button_registro_opciones"
             android:textAllCaps="false"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txtNewAccountMessage"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/txtNewAccountMessage"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingStart="4dp"
+                android:text="@string/registrate"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

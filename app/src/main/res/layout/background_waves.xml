@@ -5,7 +5,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="783dp"
+        android:layout_height="match_parent"
         android:contentDescription="@string/background_login_description"
         android:scaleType="fitXY"
         android:src="@drawable/background_login" />
