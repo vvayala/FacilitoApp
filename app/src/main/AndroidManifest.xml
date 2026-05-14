@@ -14,16 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FacilitoApp">
         <activity
-            android:name=".MainScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Ajustes"
+            android:name=".NotificacionItem"
             android:exported="false" />
         <activity
             android:name=".Notificaciones"
             android:exported="false" />
         <activity
-            android:name=".NotificacionItem"
+            android:name=".MainScreen"
+            android:exported="false" />
+        <activity
+            android:name=".Ajustes"
             android:exported="false" />
         <activity
             android:name=".Reviews"
