@@ -45,19 +45,10 @@
     <string name="carpinteria">Carpintería</string>
     <string name="titulo">Título:</string>
     <string name="arreglar_puerta">Arreglar puerta</string>
-    <string name="usuario">Usuario</string>
-    <string name="comentario">Este es un comentario de ejemplo.</string>
-    <string name="resenas">Reseñas</string>
-
-
-    <!--    STRINGS A UTILIZAR-->
-    <string name="background_login_description">Background Login</string>
-    <string name="txtTitleApp">FACILITO</string>
-    <string name="txtSlogan">El trabajo local más cerca de ti</string>
-    <string name="txtLoginTitle">Iniciar Sesión</string>
-    <string name="hintEmail">Ingrese su email</string>
-    <string name="hintPassword">Contraseña</string>
-    <string name="txtLogin">Ingresar</string>
-    <string name="txtNewAccountMessage">¿No tienes cuenta?</string>
-
+    <string name="editarPerfil">Editar Perfil</string>
+    <string name="fotoPerfil">Foto de perfil:</string>
+    <string name="guardarCambios">Guardar cambios</string>
+    <string name="testEditarPerfil">Test Editar Perfil</string>
+    <string name="contactar">Contactar</string>
+    <string name="verPerfil">Ver Perfil</string>
 </resources>
