@@ -51,4 +51,8 @@
     <string name="testEditarPerfil">Test Editar Perfil</string>
     <string name="contactar">Contactar</string>
     <string name="verPerfil">Ver Perfil</string>
+    <string name="resenasRecientes">Reseñas recientes</string>
+    <string name="resena1">María G. - Excelente trabajo en mi closet. Muy profesional y puntual. ★★★★★</string>
+    <string name="resena2">Carlos R. - Muy buenas terminaciones. Recomendado. ★★★★☆</string>
+    <string name="resena3">Ana L. - Cumplió con el tiempo acordado. Buena relación calidad-precio. ★★★★★</string>
 </resources>
