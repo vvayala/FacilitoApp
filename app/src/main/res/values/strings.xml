@@ -55,4 +55,8 @@
     <string name="resena1">María G. - Excelente trabajo en mi closet. Muy profesional y puntual. ★★★★★</string>
     <string name="resena2">Carlos R. - Muy buenas terminaciones. Recomendado. ★★★★☆</string>
     <string name="resena3">Ana L. - Cumplió con el tiempo acordado. Buena relación calidad-precio. ★★★★★</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="sonido">Sonido</string>
+    <string name="guardar">Guardar</string>
 </resources>

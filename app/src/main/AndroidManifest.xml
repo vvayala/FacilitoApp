@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FacilitoApp">
         <activity
-            android:name=".MainScreen"
+            android:name=".Ajustes"
             android:exported="false" />
         <activity
-            android:name=".Ajustes"
+            android:name=".MainScreen"
             android:exported="false" />
         <activity
             android:name=".Notificaciones"
