@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,7 +41,7 @@
                     android:layout_width="174dp"
                     android:layout_height="106dp"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/button_registro_opciones"
+                    android:background="@drawable/button"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -108,7 +109,7 @@
                     android:layout_width="174dp"
                     android:layout_height="106dp"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/button_registro_opciones"
+                    android:background="@drawable/button"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -175,7 +176,7 @@
                 <LinearLayout
                     android:layout_width="174dp"
                     android:layout_height="106dp"
-                    android:background="@drawable/button_registro_opciones"
+                    android:background="@drawable/button"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -246,12 +247,11 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"
-            android:background="@drawable/button_registro_opciones"
-            android:fontFamily="@font/inclusive_sans"
+            android:background="@drawable/button"
             android:text="Mis solicitudes"
-            android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:backgroundTint="@null" />
 
         <TextView
             android:id="@+id/txtCategorias"
@@ -397,7 +397,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_registro_opciones"
+            android:background="@drawable/button"
             android:orientation="vertical"
             android:padding="12dp">
 
@@ -470,7 +470,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_registro_opciones"
+            android:background="@drawable/button"
             android:orientation="vertical"
             android:padding="12dp">
 
@@ -534,7 +534,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_registro_opciones"
+            android:background="@drawable/button"
             android:orientation="vertical"
             android:padding="12dp">
 

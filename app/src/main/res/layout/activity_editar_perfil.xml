@@ -171,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="18dp"
-                android:background="@drawable/button_registro_opciones"
+                android:background="@drawable/button"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="Editar"
                 android:textAllCaps="false"
