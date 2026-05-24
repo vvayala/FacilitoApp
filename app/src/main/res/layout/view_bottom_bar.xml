@@ -2,12 +2,13 @@
     android:id="@+id/bottomBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom">
+    android:layout_gravity="bottom"
+    android:background="@color/white">
 
     <!-- Franja de sombra arriba del footer -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="6dp"
+        android:layout_height="3dp"
         android:layout_gravity="top"
         android:background="@drawable/footer_shadow" />
 
@@ -20,7 +21,9 @@
         android:paddingStart="26dp"
         android:paddingTop="8dp"
         android:paddingEnd="26dp"
-        android:paddingBottom="8dp">
+        android:paddingBottom="8dp"
+
+        >
 
         <ImageView
             android:id="@+id/navHome"

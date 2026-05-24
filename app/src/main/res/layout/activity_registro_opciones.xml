@@ -67,7 +67,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="4dp"
-        android:background="@drawable/button_registro_opciones"
+        android:background="@drawable/button"
         android:fontFamily="@font/inclusive_sans"
         android:text="@string/clienteQ1"
         android:textAlignment="viewStart"

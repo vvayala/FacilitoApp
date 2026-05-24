@@ -5,4 +5,5 @@
     <color name="orange_primary">#F68031</color>
     <color name="purple_primary">#7640BD</color>
     <color name="purple_primary_900">#311845</color>
+    <color name="purple_text_hint">#BF9FEA</color>
 </resources>
