@@ -1,15 +1,16 @@
-package com.example.facilitoapp.models;
+package com.example.facilitoapp.network;
 import com.example.facilitoapp.BuildConfig;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
-    private static Retrofit retrofit;
+    private static final String BASE_URL = BuildConfig.BASE_URL;
+    private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BuildConfig.BASE_URL)
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

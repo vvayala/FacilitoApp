@@ -1,6 +1,7 @@
 package com.example.facilitoapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,22 +15,23 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.facilitoapp.models.ApiClient;
-import com.example.facilitoapp.models.ApiService;
-import com.example.facilitoapp.models.LoginRequest;
-import com.example.facilitoapp.models.LoginResponse;
-import com.example.facilitoapp.models.User;
+import com.example.facilitoapp.network.ApiClient;
+import com.example.facilitoapp.network.services.UserApiService;
+import com.example.facilitoapp.models.user.LoginRequest;
+import com.example.facilitoapp.models.user.LoginResponse;
+import com.example.facilitoapp.models.user.User;
+import com.example.facilitoapp.utils.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private static final String APP_PREFS = "facilito_user";
     private EditText etEmail, etPassword;
     private TextView txtRegistro;
     private Button btnIngresar;
-    private ApiService apiService;
+    private UserApiService userApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         txtRegistro = findViewById(R.id.txtRegistro);
         btnIngresar = findViewById(R.id.btnIngresar);
-        apiService = ApiClient.getClient().create(ApiService.class);
+        userApiService = ApiClient.getClient().create(UserApiService.class);
 
         btnIngresar.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
@@ -56,16 +58,22 @@ public class LoginActivity extends AppCompatActivity {
             if (!email.isEmpty() && !password.isEmpty()) {
                 LoginRequest loginRequest = new LoginRequest(email, password);
 
-                apiService.loginUser(loginRequest).enqueue(new Callback<LoginResponse>() {
+                userApiService.loginUser(loginRequest).enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             LoginResponse loginResponse = response.body();
                             if (loginResponse.isOk()) {
                                 User loggedUser = loginResponse.getUser();
+                                String userId = loggedUser.getId();
+
+                                SessionManager session = new SessionManager(LoginActivity.this);
+                                session.saveUserId(userId);
+
                                 Toast.makeText(LoginActivity.this,
                                         loginResponse.getMessage() + " Bienvenido " + loggedUser.getName(),
                                         Toast.LENGTH_SHORT).show();
+
                                 startActivity(new Intent(LoginActivity.this, MainScreen.class));
                             } else {
                                 Toast.makeText(LoginActivity.this,
@@ -92,12 +100,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        txtRegistro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(LoginActivity.this, RegistroOpciones.class);
-                startActivity(intent2);
-            }
+        txtRegistro.setOnClickListener( (v) -> {
+            Intent registerView = new Intent(LoginActivity.this, RegistroOpciones.class);
+            startActivity(registerView);
         });
 
     }
