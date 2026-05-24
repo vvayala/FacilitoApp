@@ -38,6 +38,7 @@ public class VerPerfil extends AppCompatActivity {
     private TextView edtTelefono;
     private TextView edtDireccion;
     private ImageButton btnEditarPerfil;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,11 @@ public class VerPerfil extends AppCompatActivity {
     private void setListeners() {
         btnEditarPerfil.setOnClickListener(v -> {
             Intent intent = new Intent(VerPerfil.this, EditarPerfil.class);
+            intent.putExtra("name", user.getName());
+            intent.putExtra("lastname", user.getLastName());
+            intent.putExtra("dui", user.getDui());
+            intent.putExtra("telephone", user.getTelephone());
+            intent.putExtra("address", "Change this address");
             startActivity(intent);
         });
     }
@@ -99,6 +105,7 @@ public class VerPerfil extends AppCompatActivity {
                 }
 
                 UserProfileResponse userProfileResponse = response.body();
+                user = userProfileResponse.user();
 
                 if(!userProfileResponse.isOk()) {
                     Util.ShowDefaultErrorMessage(VerPerfil.this);

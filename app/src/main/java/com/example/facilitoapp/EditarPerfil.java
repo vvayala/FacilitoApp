@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,8 +21,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class EditarPerfil extends AppCompatActivity {
+import com.example.facilitoapp.models.user.UpdateProfileRequest;
+import com.example.facilitoapp.models.user.UpdateProfileResponse;
+import com.example.facilitoapp.models.user.UserProfileResponse;
+import com.example.facilitoapp.network.ApiClient;
+import com.example.facilitoapp.network.services.UserApiService;
+import com.example.facilitoapp.utils.SessionManager;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class EditarPerfil extends AppCompatActivity {
     private static final String PREFS_NAME = "facilito_profile";
     private static final String KEY_NOMBRE = "nombre";
     private static final String KEY_APELLIDOS = "apellidos";
@@ -29,25 +41,13 @@ public class EditarPerfil extends AppCompatActivity {
     private static final String KEY_DIRECCION = "direccion";
 
     private SharedPreferences prefs;
-
-    private EditText edtNombre;
-    private EditText edtApellidos;
-    private EditText edtDui;
-    private EditText edtTelefono;
-    private EditText edtDireccion;
-
+    private EditText edtNombre, edtApellidos, edtDui, edtTelefono, edtDireccion;
     private Button btnEditarGuardar;
-
     private boolean isEditing = false;
     private boolean hasUnsavedChanges = false;
-
-    private String baselineNombre;
-    private String baselineApellidos;
-    private String baselineDui;
-    private String baselineTelefono;
-    private String baselineDireccion;
-
+    private String baselineNombre, baselineApellidos, baselineDui, baselineTelefono, baselineDireccion;
     private boolean suppressDirtyCheck = false;
+    private FrameLayout loaderOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +61,9 @@ public class EditarPerfil extends AppCompatActivity {
             return insets;
         });
 
-        prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        initViews();
+        loadProfileFromIntent();
 
-        edtNombre = findViewById(R.id.edtNombre);
-        edtApellidos = findViewById(R.id.edtApellidos);
-        edtDui = findViewById(R.id.edtDui);
-        edtTelefono = findViewById(R.id.edtTelefono);
-        edtDireccion = findViewById(R.id.edtDireccion);
-
-        btnEditarGuardar = findViewById(R.id.btnEditarGuardar);
-
-        loadProfileFromPrefs();
         setEditingEnabled(false);
         btnEditarGuardar.setText("Editar");
 
@@ -109,9 +101,7 @@ public class EditarPerfil extends AppCompatActivity {
                 return;
             }
 
-            saveToPrefs();
-            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
-            exitEditMode();
+            saveProfile();
         });
 
 
@@ -128,13 +118,27 @@ public class EditarPerfil extends AppCompatActivity {
         });
     }
 
-    private void loadProfileFromPrefs() {
+    private void initViews() {
+        prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        edtNombre = findViewById(R.id.edtNombre);
+        edtApellidos = findViewById(R.id.edtApellidos);
+        edtDui = findViewById(R.id.edtDui);
+        edtTelefono = findViewById(R.id.edtTelefono);
+        edtDireccion = findViewById(R.id.edtDireccion);
+
+        btnEditarGuardar = findViewById(R.id.btnEditarGuardar);
+        loaderOverlay = findViewById(R.id.loaderOverlay);
+    }
+
+    private void loadProfileFromIntent() {
         suppressDirtyCheck = true;
-        edtNombre.setText(prefs.getString(KEY_NOMBRE, "John"));
-        edtApellidos.setText(prefs.getString(KEY_APELLIDOS, "Doe"));
-        edtDui.setText(prefs.getString(KEY_DUI, "01234567-8"));
-        edtTelefono.setText(prefs.getString(KEY_TELEFONO, "7123-4567"));
-        edtDireccion.setText(prefs.getString(KEY_DIRECCION, "San Salvador, San Salvador"));
+        Intent intent = getIntent();
+        edtNombre.setText(intent.getStringExtra("name"));
+        edtApellidos.setText(intent.getStringExtra("lastname"));
+        edtDui.setText(intent.getStringExtra("dui"));
+        edtTelefono.setText(intent.getStringExtra("telephone"));
+        edtDireccion.setText(intent.getStringExtra("address"));
         suppressDirtyCheck = false;
     }
 
@@ -244,22 +248,54 @@ public class EditarPerfil extends AppCompatActivity {
         edtDireccion.setError(null);
     }
 
-    private void saveToPrefs() {
-        prefs.edit()
-                .putString(KEY_NOMBRE, getText(edtNombre).trim())
-                .putString(KEY_APELLIDOS, getText(edtApellidos).trim())
-                .putString(KEY_DUI, getText(edtDui).trim())
-                .putString(KEY_TELEFONO, getText(edtTelefono).trim())
-                .putString(KEY_DIRECCION, getText(edtDireccion).trim())
-                .apply();
+    private void saveProfile() {
+        String userId = new SessionManager(this).getUserId();
 
-        baselineNombre = getText(edtNombre);
-        baselineApellidos = getText(edtApellidos);
-        baselineDui = getText(edtDui);
-        baselineTelefono = getText(edtTelefono);
-        baselineDireccion = getText(edtDireccion);
+        UpdateProfileRequest request = new UpdateProfileRequest(
+                getText(edtNombre).trim(),
+                getText(edtApellidos).trim(),
+                getText(edtDui).trim(),
+                getText(edtTelefono).trim(),
+                getText(edtDireccion).trim()
+        );
 
-        updateDirtyState();
+        showLoader();
+        btnEditarGuardar.setEnabled(false);
+
+        UserApiService userService = ApiClient.getClient().create(UserApiService.class);
+
+        userService.updateUserProfile(userId, request)
+                .enqueue(new Callback<UpdateProfileResponse>() {
+                    @Override
+                    public void onResponse(Call<UpdateProfileResponse> call, Response<UpdateProfileResponse> response) {
+                        hideLoader();
+                        btnEditarGuardar.setEnabled(true);
+
+                        if (!response.isSuccessful() || response.body() == null) {
+                            Toast.makeText(EditarPerfil.this, "Error al guardar", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Toast.makeText(EditarPerfil.this, response.body().message(), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<UpdateProfileResponse> call, Throwable t) {
+                        hideLoader();
+                        btnEditarGuardar.setEnabled(true);
+                        Toast.makeText(EditarPerfil.this, "Sin conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void showLoader() {
+        hideLoader();
+        loaderOverlay.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLoader() {
+        loaderOverlay.setVisibility(View.GONE);
     }
 
     private void navigateWithConfirm(Intent intent) {
