@@ -2,6 +2,7 @@ package com.example.facilitoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,9 +13,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.facilitoapp.fragments.HomeFragment;
+import com.example.facilitoapp.fragments.MessagesFragment;
 
 public class MainScreen extends AppCompatActivity {
-    private ImageView imgHeaderNotification, imgHeaderUser;
+    private View bottomBar;
+    private ImageView navHome, navChat, navLocation, imgHeaderNotification, imgHeaderUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +36,14 @@ public class MainScreen extends AppCompatActivity {
 
         initViews();
         setListeners();
-
-        FooterNavigationHelper.setupHomeNavigation(this);
     }
 
     private void initViews() {
+        bottomBar = findViewById(R.id.includeBottomBar);
+        navHome = bottomBar.findViewById(R.id.navHome);
+        navChat = bottomBar.findViewById(R.id.navChat);
+        navLocation = bottomBar.findViewById(R.id.navLocation);
+
         imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
         imgHeaderUser = findViewById(R.id.imgHeaderUser);
     }
@@ -51,6 +57,14 @@ public class MainScreen extends AppCompatActivity {
         imgHeaderUser.setOnClickListener(v -> {
             Intent intent = new Intent(MainScreen.this, VerPerfil.class);
             startActivity(intent);
+        });
+
+        navHome.setOnClickListener(v -> {
+            loadFragment(new HomeFragment());
+        });
+
+        navChat.setOnClickListener(v -> {
+            loadFragment(new MessagesFragment());
         });
     }
 
