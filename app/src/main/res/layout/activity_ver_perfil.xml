@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wp5"
+    android:background="@drawable/background_secondary"
     tools:context=".VerPerfil">
 
     <ScrollView
@@ -89,7 +89,7 @@
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="@string/nombre"
-                android:textColor="@color/purple_primary_900"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -111,7 +111,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="Apellidos:"
-                android:textColor="@color/purple_primary_900"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="@string/dui"
-                android:textColor="@color/purple_primary_900"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -155,7 +155,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="@string/telefono"
-                android:textColor="@color/purple_primary_900"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -177,7 +177,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="Dirección:"
-                android:textColor="@color/purple_primary_900"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

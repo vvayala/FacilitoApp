@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wp5"
+    android:background="@drawable/background_secondary"
     tools:context=".EditarPerfil">
 
     <ScrollView
@@ -67,7 +67,7 @@
                 android:hint="John"
                 android:inputType="textPersonName"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -91,7 +91,7 @@
                 android:hint="Doe"
                 android:inputType="textPersonName"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -115,7 +115,7 @@
                 android:hint="01234567-8"
                 android:inputType="text"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -139,7 +139,7 @@
                 android:hint="7123-4567"
                 android:inputType="phone"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -163,7 +163,7 @@
                 android:hint="San Salvador, San Salvador"
                 android:inputType="textPostalAddress"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <Button
@@ -181,5 +181,21 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/loaderOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
