@@ -1,11 +1,15 @@
 package com.example.facilitoapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private TextView txtRegistro;
     private Button btnIngresar;
+    private FrameLayout loaderOverlay;
     private UserApiService userApiService;
 
     @Override
@@ -45,22 +50,21 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
-        txtRegistro = findViewById(R.id.txtRegistro);
-        btnIngresar = findViewById(R.id.btnIngresar);
-        userApiService = ApiClient.getClient().create(UserApiService.class);
+        initViews();
 
         btnIngresar.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
+            showLoader();
             if (!email.isEmpty() && !password.isEmpty()) {
                 LoginRequest loginRequest = new LoginRequest(email, password);
 
                 userApiService.loginUser(loginRequest).enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        hideLoader();
+
                         if (response.isSuccessful() && response.body() != null) {
                             LoginResponse loginResponse = response.body();
                             if (loginResponse.isOk()) {
@@ -89,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
+                        hideLoader();
                         Toast.makeText(LoginActivity.this,
                                 "Error de conexión: " + t.getMessage(),
                                 Toast.LENGTH_SHORT).show();
@@ -104,6 +109,32 @@ public class LoginActivity extends AppCompatActivity {
             Intent registerView = new Intent(LoginActivity.this, RegistroOpciones.class);
             startActivity(registerView);
         });
+    }
 
+    private void initViews() {
+        userApiService = ApiClient.getClient().create(UserApiService.class);
+
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        txtRegistro = findViewById(R.id.txtRegistro);
+        btnIngresar = findViewById(R.id.btnIngresar);
+        loaderOverlay = findViewById(R.id.loaderOverlay);
+    }
+
+    private void showLoader() {
+        hideLoader();
+        loaderOverlay.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLoader() {
+        loaderOverlay.setVisibility(View.GONE);
+    }
+
+    private void hideKeyBoard() {
+        View view = this.getCurrentFocus();
+        if(view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

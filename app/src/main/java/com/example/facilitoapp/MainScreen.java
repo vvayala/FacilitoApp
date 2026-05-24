@@ -2,7 +2,6 @@ package com.example.facilitoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,9 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+
+import com.example.facilitoapp.fragments.HomeFragment;
 
 public class MainScreen extends AppCompatActivity {
-
+    private ImageView imgHeaderNotification, imgHeaderUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,28 +27,37 @@ public class MainScreen extends AppCompatActivity {
             return insets;
         });
 
-        ImageView imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
-        if (imgHeaderNotification != null) {
-            imgHeaderNotification.setOnClickListener(v -> {
-                Intent intent = new Intent(MainScreen.this, Notificaciones.class);
-                startActivity(intent);
-            });
+        if(savedInstanceState == null) {
+            loadFragment(new HomeFragment());
         }
 
-        ImageView imgHeaderUser = findViewById(R.id.imgHeaderUser);
-        if (imgHeaderUser != null) {
-            imgHeaderUser.setOnClickListener(v -> {
-                Intent intent = new Intent(MainScreen.this, VerPerfil.class);
-                startActivity(intent);
-            });
-        }
+        initViews();
+        setListeners();
 
-        Button btnMisSolicitudes = findViewById(R.id.btnMisSolicitudes);
-        btnMisSolicitudes.setOnClickListener(v -> {
-            Intent intent = new Intent(MainScreen.this, MyRequests.class);
+        FooterNavigationHelper.setupHomeNavigation(this);
+    }
+
+    private void initViews() {
+        imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
+        imgHeaderUser = findViewById(R.id.imgHeaderUser);
+    }
+
+    private void setListeners() {
+        imgHeaderNotification.setOnClickListener(v -> {
+            Intent intent = new Intent(MainScreen.this, Notificaciones.class);
             startActivity(intent);
         });
 
-        FooterNavigationHelper.setupHomeNavigation(this);
+        imgHeaderUser.setOnClickListener(v -> {
+            Intent intent = new Intent(MainScreen.this, VerPerfil.class);
+            startActivity(intent);
+        });
+    }
+
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
     }
 }
