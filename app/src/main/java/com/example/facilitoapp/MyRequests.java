@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MyRequests extends AppCompatActivity {
+    private ImageView imgHeaderNotification, imgHeaderUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +25,24 @@ public class MyRequests extends AppCompatActivity {
             return insets;
         });
 
-        ImageView imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
-        if (imgHeaderNotification != null) {
-            imgHeaderNotification.setOnClickListener(v -> {
-                Intent intent = new Intent(MyRequests.this, Notificaciones.class);
-                startActivity(intent);
-            });
-        }
+        initViews();
+        setListeners();
+    }
 
-        ImageView imgHeaderUser = findViewById(R.id.imgHeaderUser);
-        if (imgHeaderUser != null) {
-            imgHeaderUser.setOnClickListener(v -> {
-                Intent intent = new Intent(MyRequests.this, VerPerfil.class);
-                startActivity(intent);
-            });
-        }
+    private void initViews() {
+        imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
+        imgHeaderUser = findViewById(R.id.imgHeaderUser);
+    }
 
-        FooterNavigationHelper.setupHomeNavigation(this);
+    private void setListeners() {
+        imgHeaderNotification.setOnClickListener(v -> {
+            Intent intent = new Intent(MyRequests.this, Notificaciones.class);
+            startActivity(intent);
+        });
+
+        imgHeaderUser.setOnClickListener(v -> {
+            Intent intent = new Intent(MyRequests.this, VerPerfil.class);
+            startActivity(intent);
+        });
     }
 }
