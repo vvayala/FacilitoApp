@@ -43,7 +43,11 @@ public class HomeFragment extends Fragment {
 
     private void setListeners() {
         btnMisSolicitudes.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), MyRequests.class));
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new MyRequestsFragment())
+                    .addToBackStack(null)
+                    .commit();
         });
     }
 }

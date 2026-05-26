@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.facilitoapp.fragments.HomeFragment;
 import com.example.facilitoapp.fragments.MessagesFragment;
+import com.example.facilitoapp.fragments.NotificationsFragment;
 
 public class MainScreen extends AppCompatActivity {
     private View bottomBar;
@@ -50,8 +51,7 @@ public class MainScreen extends AppCompatActivity {
 
     private void setListeners() {
         imgHeaderNotification.setOnClickListener(v -> {
-            Intent intent = new Intent(MainScreen.this, Notificaciones.class);
-            startActivity(intent);
+            loadFragment(new NotificationsFragment());
         });
 
         imgHeaderUser.setOnClickListener(v -> {
