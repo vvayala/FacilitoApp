@@ -12,10 +12,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.facilitoapp.models.ApiClient;
-import com.example.facilitoapp.models.ApiService;
-import com.example.facilitoapp.models.LoginResponse;
-import com.example.facilitoapp.models.RegisterRequest;
+import com.example.facilitoapp.network.ApiClient;
+import com.example.facilitoapp.network.services.UserApiService;
+import com.example.facilitoapp.models.user.LoginResponse;
+import com.example.facilitoapp.models.user.RegisterRequest;
+import com.example.facilitoapp.utils.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +26,7 @@ public class RegistroCliente extends AppCompatActivity {
 
     private EditText txtNombre, txtApellido, txtTelefono, txtDui, txtCorreo, txtContrasena;
     private Button btnRegistro;
-    private ApiService apiService;
+    private UserApiService userApiService;
 
     private static final String CLIENTE_ROLE_ID = "6822f3a7b2f1c4a8b1d2e3f4";
 
@@ -47,7 +48,7 @@ public class RegistroCliente extends AppCompatActivity {
         txtCorreo = findViewById(R.id.txtCorreo);
         txtContrasena = findViewById(R.id.txtContrasena);
         btnRegistro = findViewById(R.id.btnRegistro);
-        apiService = ApiClient.getClient().create(ApiService.class);
+        userApiService = ApiClient.getClient().create(UserApiService.class);
 
         btnRegistro.setOnClickListener(v -> registroUsuario());
     }
@@ -70,12 +71,16 @@ public class RegistroCliente extends AppCompatActivity {
             nombre, apellido, telefono, dui, correo, contrasena, CLIENTE_ROLE_ID
         );
 
-        apiService.registerUser(request).enqueue(new Callback<LoginResponse>() {
+        userApiService.registerUser(request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
                     if (loginResponse.isOk()) {
+                        String userId = loginResponse.getUser().getId();
+                        SessionManager session = new SessionManager(RegistroCliente.this);
+                        session.saveUserId(userId);
+
                         Toast.makeText(RegistroCliente.this,
                                 "Registro exitoso. Bienvenido " + nombre,
                                 Toast.LENGTH_SHORT).show();

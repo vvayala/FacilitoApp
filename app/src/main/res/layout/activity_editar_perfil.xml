@@ -5,36 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wp5"
+    android:background="@drawable/background_secondary"
     tools:context=".EditarPerfil">
-
-    <include
-        android:id="@+id/includeHeader"
-        layout="@layout/view_header"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <include
-        android:id="@+id/includeBottomBar"
-        layout="@layout/view_bottom_bar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollEditProfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/includeBottomBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeHeader">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,7 +67,7 @@
                 android:hint="John"
                 android:inputType="textPersonName"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -109,7 +91,7 @@
                 android:hint="Doe"
                 android:inputType="textPersonName"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -133,7 +115,7 @@
                 android:hint="01234567-8"
                 android:inputType="text"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -157,7 +139,7 @@
                 android:hint="7123-4567"
                 android:inputType="phone"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <TextView
@@ -181,7 +163,7 @@
                 android:hint="San Salvador, San Salvador"
                 android:inputType="textPostalAddress"
                 android:paddingHorizontal="14dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/purple_primary"
                 android:textSize="16sp" />
 
             <Button
@@ -189,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="18dp"
-                android:background="@drawable/button_registro_opciones"
+                android:background="@drawable/button"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="Editar"
                 android:textAllCaps="false"
@@ -199,5 +181,21 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/loaderOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

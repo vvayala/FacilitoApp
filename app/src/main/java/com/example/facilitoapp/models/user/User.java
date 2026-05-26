@@ -1,4 +1,4 @@
-package com.example.facilitoapp.models;
+package com.example.facilitoapp.models.user;
 
 import com.google.gson.annotations.SerializedName;
 

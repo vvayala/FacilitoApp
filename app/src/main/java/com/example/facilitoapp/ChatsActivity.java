@@ -12,9 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class ChatsActivity extends AppCompatActivity {
-
-    private static final String DUMMY_CHAT_TITLE = "Mécanica General - Juan Mecánico";
-
+    private ImageView imgHeaderNotification, imgHeaderUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,41 +25,24 @@ public class ChatsActivity extends AppCompatActivity {
             return insets;
         });
 
-        ImageView imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
-        if (imgHeaderNotification != null) {
-            imgHeaderNotification.setOnClickListener(v -> {
-                Intent intent = new Intent(ChatsActivity.this, Notificaciones.class);
-                startActivity(intent);
-            });
-        }
-
-        ImageView imgHeaderUser = findViewById(R.id.imgHeaderUser);
-        if (imgHeaderUser != null) {
-            imgHeaderUser.setOnClickListener(v -> {
-                Intent intent = new Intent(ChatsActivity.this, VerPerfil.class);
-                startActivity(intent);
-            });
-        }
-
-        int[] chatCardIds = {
-                R.id.cardChat1,
-                R.id.cardChat2,
-                R.id.cardChat3,
-                R.id.cardChat4,
-                R.id.cardChat5
-        };
-
-        for (int cardId : chatCardIds) {
-            View chatCard = findViewById(cardId);
-            chatCard.setOnClickListener(v -> openConversation(DUMMY_CHAT_TITLE));
-        }
-
-        FooterNavigationHelper.setupHomeNavigation(this);
+        initViews();
+        setListeners();
     }
 
-    private void openConversation(String chatTitle) {
-        Intent intent = new Intent(ChatsActivity.this, ChatConversationActivity.class);
-        intent.putExtra(ChatConversationActivity.EXTRA_CHAT_TITLE, chatTitle);
-        startActivity(intent);
+    private void initViews() {
+         imgHeaderNotification = findViewById(R.id.imgHeaderNotification);
+         imgHeaderUser = findViewById(R.id.imgHeaderUser);
+    }
+
+    private void setListeners() {
+        imgHeaderNotification.setOnClickListener(v -> {
+            Intent intent = new Intent(ChatsActivity.this, Notificaciones.class);
+            startActivity(intent);
+        });
+
+        imgHeaderUser.setOnClickListener(v -> {
+            Intent intent = new Intent(ChatsActivity.this, VerPerfil.class);
+            startActivity(intent);
+        });
     }
 }

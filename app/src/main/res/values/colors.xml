@@ -2,7 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="orange_primary">#F68031</color>
-    <color name="purple_primary">#7640BD</color>
+    <color name="orange_primary">#F69351</color>
+    <color name="purple_primary">#A869FA</color>
     <color name="purple_primary_900">#9747FF</color>
+    <color name="purple_primary_button">#9D55FA</color>
+    <color name="purple_text_hint">#BF9FEA</color>
+    <color name="purple_dark">#311845</color>
+    <color name="pruple_secondary">#7640BD</color>
+    <color name="gray_secondary">#D9D9DC</color>
 </resources>

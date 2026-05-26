@@ -239,7 +239,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/button_registro_opciones"
+                android:background="@drawable/button"
                 android:fontFamily="@font/inclusive_sans"
                 android:text="@string/registrarse"
                 android:textSize="24sp"
