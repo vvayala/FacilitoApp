@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/headerConversation" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rvChats"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -96,7 +96,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/imgAddPicture"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:backgroundTint="@android:color/transparent"
@@ -106,7 +106,7 @@
             app:srcCompat="@drawable/icon_add" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/etMessage2Send"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -118,7 +118,7 @@
             android:textColor="@color/purple_dark" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/imgSendMessage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="2dp"

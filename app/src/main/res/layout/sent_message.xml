@@ -6,7 +6,7 @@
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/txtUsuarioEnviado"
+        android:id="@+id/txtUserSent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="4dp"
@@ -15,7 +15,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtMensajeEnviado"
+        android:id="@+id/txtMessageSent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
@@ -28,7 +28,7 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/txtHoraEnviado"
+        android:id="@+id/txtTimeSent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="14:45"

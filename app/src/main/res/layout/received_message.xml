@@ -6,7 +6,7 @@
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/txtUsuarioRecibido"
+        android:id="@+id/txtUserReceived"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contacto"
@@ -20,14 +20,14 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/iconRecibido"
+            android:id="@+id/imgUserReceived"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="6dp"
             android:src="@drawable/icon_user"/>
 
         <TextView
-            android:id="@+id/txtMensajeRecibido"
+            android:id="@+id/txtMessageReceived"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -41,7 +41,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtHoraRecibido"
+        android:id="@+id/txtTimeReceived"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="14:46"

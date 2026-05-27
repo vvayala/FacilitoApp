@@ -1,5 +1,7 @@
 package com.example.facilitoapp.network.services;
 
+import com.example.facilitoapp.models.business.Business;
+import com.example.facilitoapp.models.chats.ChatMessages;
 import com.example.facilitoapp.models.user.LoginRequest;
 import com.example.facilitoapp.models.user.LoginResponse;
 import com.example.facilitoapp.models.user.RegisterRequest;
@@ -18,11 +20,9 @@ import retrofit2.http.Path;
 
 public interface UserApiService {
 
-    // Registrar un nuevo usuario
     @POST("auth/register")
     Call<LoginResponse> registerUser(@Body RegisterRequest request);
 
-    // Login de usuario
     @POST("auth/login")
     Call<LoginResponse> loginUser(@Body LoginRequest request);
 
