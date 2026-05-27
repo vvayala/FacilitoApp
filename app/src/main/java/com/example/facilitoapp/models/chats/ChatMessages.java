@@ -7,27 +7,26 @@ public class ChatMessages {
 
     @SerializedName("_id")
     private String id;
-
+    @SerializedName("chat_id")
+    private Chat chatId;
     @SerializedName("is_sent")
     private Boolean isSent;
-
     @SerializedName("is_read")
     private Boolean isRead;
-
     @SerializedName("sender_id")
     private User sender_id;
-
     @SerializedName("time_sent")
     private String timeSent;
-
     @SerializedName("message_content")
     private String messageContent;
 
     public ChatMessages() {
     }
 
-    public ChatMessages(String id, Boolean isSent, Boolean isRead, User sender_id, String timeSent, String messageContent) {
+
+    public ChatMessages(String id, Chat chatId, Boolean isSent, Boolean isRead, User sender_id, String timeSent, String messageContent) {
         this.id = id;
+        this.chatId = chatId;
         this.isSent = isSent;
         this.isRead = isRead;
         this.sender_id = sender_id;
@@ -41,6 +40,14 @@ public class ChatMessages {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Chat getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(Chat chatId) {
+        this.chatId = chatId;
     }
 
     public Boolean getSent() {
