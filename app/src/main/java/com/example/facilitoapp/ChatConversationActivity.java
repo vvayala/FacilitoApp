@@ -2,6 +2,7 @@ package com.example.facilitoapp;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -15,11 +16,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.facilitoapp.models.chats.Chat;
 import com.example.facilitoapp.models.chats.ChatAdapter;
 import com.example.facilitoapp.models.chats.ChatMessages;
 import com.example.facilitoapp.models.chats.ChatResponse;
+import com.example.facilitoapp.models.chats.SendChat;
+import com.example.facilitoapp.models.chats.SentChat;
 import com.example.facilitoapp.network.ApiClient;
 import com.example.facilitoapp.network.services.ChatsApiService;
+import com.example.facilitoapp.utils.SessionManager;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -36,7 +41,7 @@ public class ChatConversationActivity extends AppCompatActivity {
     private ImageButton imgAddPicture, imgSendMessage;
     private EditText etMessage2Send;
     private RecyclerView rvChats;
-    private String currentUser = "";
+    private String currentUser, newMessage, currentChatId;
     private List<ChatMessages> messages;
     ChatsApiService chatsApiService;
 
@@ -51,6 +56,7 @@ public class ChatConversationActivity extends AppCompatActivity {
             return insets;
         });
 
+        currentUser = new SessionManager(this).getUserId();
         txtConversationTitle = findViewById(R.id.txtConversationTitle);
         btnBackConversation = findViewById(R.id.btnBackConversation);
         imgAddPicture = findViewById(R.id.imgAddPicture);
@@ -67,15 +73,47 @@ public class ChatConversationActivity extends AppCompatActivity {
         }
 
         btnBackConversation.setOnClickListener(v -> finish());
+        
+        imgSendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newMessage = etMessage2Send.getText().toString().trim();
+                if (newMessage.isEmpty()){
+                    Toast.makeText(ChatConversationActivity.this,
+                            "Escribe un mensaje",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    sendMessage(newMessage, currentUser,currentChatId);
+                }
+            }
+        });
+    }
+
+    private void sendMessage(String newMessage, String currentUser, String currentChatId) {
+        SendChat sendChat = new SendChat(newMessage,currentUser,currentChatId);
+        chatsApiService.sendChat(sendChat).enqueue(new Callback<SentChat>() {
+            @Override
+            public void onResponse(Call<SentChat> call, Response<SentChat> response) {
+                loadMessages();
+                etMessage2Send.setText("");
+            }
+
+            @Override
+            public void onFailure(Call<SentChat> call, Throwable t) {
+                Toast.makeText(ChatConversationActivity.this,
+                        "Error al enviar mensajes",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void loadMessages() {
-        chatsApiService.getChatMessagesById().enqueue(new Callback<ChatResponse>() {
+        chatsApiService.getChatMessagesById(currentUser).enqueue(new Callback<ChatResponse>() {
             @Override
             public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     ChatResponse chatResponse = response.body();
-                    Log.d("API_RESPONSE", new Gson().toJson(response.body()));
 
                     if (chatResponse.isSuccess()) {
                         List<ChatMessages> messages = chatResponse.getMessages();
@@ -83,22 +121,20 @@ public class ChatConversationActivity extends AppCompatActivity {
                         ChatAdapter adapter = new ChatAdapter(messages, currentUser);
                         rvChats.setLayoutManager(new LinearLayoutManager(ChatConversationActivity.this));
                         rvChats.setAdapter(adapter);
-
                         rvChats.scrollToPosition(messages.size() - 1);
                     } else {
                         Toast.makeText(ChatConversationActivity.this,
                                 "Error al cargar mensajes",
                                 Toast.LENGTH_SHORT).show();
-
                     }
+
                 }
             }
 
             @Override
             public void onFailure(Call<ChatResponse> call, Throwable t) {
-                Toast.makeText(ChatConversationActivity.this, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChatConversationActivity.this, "Error de conexion", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
