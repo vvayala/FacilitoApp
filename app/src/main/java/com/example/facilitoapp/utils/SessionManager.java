@@ -15,6 +15,7 @@ public class SessionManager {
 
     public void saveUserId(String userId) {
         editor.putString("user_id", userId);
+        editor.apply();
     }
 
     public String getUserId() {
