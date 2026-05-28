@@ -1,50 +1,66 @@
 package com.example.facilitoapp.models.chats;
 
 import com.example.facilitoapp.models.business.Business;
-import com.example.facilitoapp.models.service.Service;
+import com.example.facilitoapp.models.service.ServiceRequest;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.annotations.SerializedName;
 
 public class Chat {
 
     @SerializedName("_id")
     private String id;
+
     @SerializedName("service_request_id")
-    private Service serviceRequestId;
+    private JsonElement serviceRequestId;
 
-    @SerializedName("businessId")
-    private Business businessId;
+    @SerializedName("business_id")
+    private JsonElement businessId;
 
+    public Chat() {}
 
-    public Chat() {
-    }
-
-    public Chat(String id, Service serviceRequestId, Business businessId) {
+    public Chat(String id, JsonElement serviceRequestId, JsonElement businessId) {
         this.id = id;
         this.serviceRequestId = serviceRequestId;
         this.businessId = businessId;
     }
 
-    public String getId() {
-        return id;
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public ServiceRequest getServiceRequest() {
+        if (serviceRequestId == null) return null;
+        Gson gson = new Gson();
+
+        if (serviceRequestId.isJsonPrimitive()) {
+            ServiceRequest sr = new ServiceRequest();
+            sr.setId(serviceRequestId.getAsString());
+            return sr;
+        } else if (serviceRequestId.isJsonObject()) {
+            return gson.fromJson(serviceRequestId, ServiceRequest.class);
+        }
+        return null;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Service getServiceRequestId() {
-        return serviceRequestId;
-    }
-
-    public void setServiceRequestId(Service serviceRequestId) {
+    public void setServiceRequest(JsonElement serviceRequestId) {
         this.serviceRequestId = serviceRequestId;
     }
 
-    public Business getBusinessId() {
-        return businessId;
+    public Business getBusiness() {
+        if (businessId == null) return null;
+        Gson gson = new Gson();
+
+        if (businessId.isJsonPrimitive()) {
+            Business b = new Business();
+            b.setId(businessId.getAsString());
+            return b;
+        } else if (businessId.isJsonObject()) {
+            return gson.fromJson(businessId, Business.class);
+        }
+        return null;
     }
 
-    public void setBusinessId(Business businessId) {
+    public void setBusiness(JsonElement businessId) {
         this.businessId = businessId;
     }
 }

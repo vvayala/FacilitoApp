@@ -1,5 +1,6 @@
 package com.example.facilitoapp;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,13 +37,12 @@ import retrofit2.Retrofit;
 
 public class ChatConversationActivity extends AppCompatActivity {
 
-    public static final String EXTRA_CHAT_TITLE = "extra_chat_title";
+    public static final String EXTRA_CHAT_TITLE = "Chat";
     private TextView txtConversationTitle, btnBackConversation;
     private ImageButton imgAddPicture, imgSendMessage;
     private EditText etMessage2Send;
     private RecyclerView rvChats;
-    private String currentUser, newMessage, currentChatId;
-    private List<ChatMessages> messages;
+    private String currentUser, newMessage, currentChatId, businessName;
     ChatsApiService chatsApiService;
 
     @Override
@@ -64,13 +64,11 @@ public class ChatConversationActivity extends AppCompatActivity {
         etMessage2Send = findViewById(R.id.etMessage2Send);
         rvChats = findViewById(R.id.rvChats);
         chatsApiService = ApiClient.getClient().create(ChatsApiService.class);
+        currentChatId = getIntent().getStringExtra("chatId");
+        businessName = getIntent().getStringExtra("businessName");
+        txtConversationTitle.setText(businessName);
 
         loadMessages();
-
-        String chatTitle = getIntent().getStringExtra(EXTRA_CHAT_TITLE);
-        if (chatTitle != null && !chatTitle.isEmpty()) {
-            txtConversationTitle.setText(chatTitle);
-        }
 
         btnBackConversation.setOnClickListener(v -> finish());
         
@@ -109,7 +107,7 @@ public class ChatConversationActivity extends AppCompatActivity {
     }
 
     private void loadMessages() {
-        chatsApiService.getChatMessagesById(currentUser).enqueue(new Callback<ChatResponse>() {
+        chatsApiService.getChatMessagesById(currentChatId).enqueue(new Callback<ChatResponse>() {
             @Override
             public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -119,9 +117,11 @@ public class ChatConversationActivity extends AppCompatActivity {
                         List<ChatMessages> messages = chatResponse.getMessages();
 
                         ChatAdapter adapter = new ChatAdapter(messages, currentUser);
-                        rvChats.setLayoutManager(new LinearLayoutManager(ChatConversationActivity.this));
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(ChatConversationActivity.this);
+                        layoutManager.setReverseLayout(true);
+                        rvChats.setLayoutManager(layoutManager);
                         rvChats.setAdapter(adapter);
-                        rvChats.scrollToPosition(messages.size() - 1);
+                        rvChats.scrollToPosition(0);
                     } else {
                         Toast.makeText(ChatConversationActivity.this,
                                 "Error al cargar mensajes",
