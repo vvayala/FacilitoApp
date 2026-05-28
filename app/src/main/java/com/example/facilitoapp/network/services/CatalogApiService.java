@@ -1,5 +1,6 @@
 package com.example.facilitoapp.network.services;
 
+import com.example.facilitoapp.models.catalogs.CategoryResponse;
 import com.example.facilitoapp.models.catalogs.RoleReponse;
 
 import retrofit2.Call;
@@ -10,5 +11,5 @@ public interface CatalogApiService {
     Call<RoleReponse> getRoles();
 
     @GET("services/categories")
-    Call<CategoriesResponse> getCategories();
+    Call<CategoryResponse> getCategories();
 }

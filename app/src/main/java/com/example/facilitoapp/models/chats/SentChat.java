@@ -9,6 +9,6 @@ public class SentChat {
     private String message;
 
     @SerializedName("chatMessage")
-    private ChatMessages chatMessages;
+    private Chat chatMessages;
 
 }

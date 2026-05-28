@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ChatResponse {
+public class InboxResponse {
+
     @SerializedName("ok")
     private boolean success;
-    @SerializedName("messages")
-    private List<ChatMessages> messages;
+    @SerializedName("chats")
+    private List<Chat> inbox;
 
 
     public boolean isSuccess() { return success; }
-        public List<ChatMessages> getMessages() { return messages; }
-
+    public List<Chat> getInbox() { return inbox; }
 }

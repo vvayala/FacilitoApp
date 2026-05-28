@@ -3,6 +3,7 @@ package com.example.facilitoapp.network.services;
 import com.example.facilitoapp.models.chats.Chat;
 import com.example.facilitoapp.models.chats.ChatMessages;
 import com.example.facilitoapp.models.chats.ChatResponse;
+import com.example.facilitoapp.models.chats.InboxResponse;
 import com.example.facilitoapp.models.chats.SendChat;
 import com.example.facilitoapp.models.chats.SentChat;
 import com.example.facilitoapp.models.user.LoginRequest;
@@ -20,11 +21,11 @@ import retrofit2.http.Query;
 
 public interface ChatsApiService {
 
-   // @GET("chat/{user_id}")
-    // Call<Chat> getChatById(@Path("user_id") String userId);
+   @GET("chat")
+    Call<InboxResponse> getChatById(@Query("user_id") String userId);
 
    @GET("chat/messages")
-   Call<ChatResponse> getChatMessagesById(@Query("user_id") String userId);
+   Call<ChatResponse> getChatMessagesById(@Query("chat_id") String userId);
 
     @POST("chat/messages")
     Call<SentChat> sendChat(@Body SendChat chatResponse);
