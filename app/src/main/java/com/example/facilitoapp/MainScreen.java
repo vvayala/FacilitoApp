@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.facilitoapp.fragments.HomeFragment;
 import com.example.facilitoapp.fragments.MessagesFragment;
 import com.example.facilitoapp.fragments.NotificationsFragment;
+import com.example.facilitoapp.utils.FacilitoApp;
 
 public class MainScreen extends AppCompatActivity {
     private View bottomBar;
@@ -55,15 +56,18 @@ public class MainScreen extends AppCompatActivity {
         });
 
         imgHeaderUser.setOnClickListener(v -> {
+            FacilitoApp.playClick();
             Intent intent = new Intent(MainScreen.this, VerPerfil.class);
             startActivity(intent);
         });
 
         navHome.setOnClickListener(v -> {
+            FacilitoApp.playClick();
             loadFragment(new HomeFragment());
         });
 
         navChat.setOnClickListener(v -> {
+            FacilitoApp.playClick();
             loadFragment(new MessagesFragment());
         });
     }

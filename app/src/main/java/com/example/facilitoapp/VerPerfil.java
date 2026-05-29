@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,6 +39,7 @@ public class VerPerfil extends AppCompatActivity {
     private TextView edtTelefono;
     private TextView edtDireccion;
     private ImageButton btnEditarPerfil;
+    private ImageView imgHeaderSettings;
     private User user;
 
     @Override
@@ -71,6 +73,7 @@ public class VerPerfil extends AppCompatActivity {
         edtTelefono = findViewById(R.id.edtTelefono);
         edtDireccion = findViewById(R.id.edtDireccion);
         btnEditarPerfil = findViewById(R.id.btnEditarPerfil);
+        imgHeaderSettings = findViewById(R.id.imgHeaderSettings);
     }
 
     private void setListeners() {
@@ -82,6 +85,14 @@ public class VerPerfil extends AppCompatActivity {
             intent.putExtra("telephone", user.getTelephone());
             intent.putExtra("address", "Change this address");
             startActivity(intent);
+        });
+
+        imgHeaderSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(VerPerfil.this, Ajustes.class);
+                startActivity(intent2);
+            }
         });
     }
 
