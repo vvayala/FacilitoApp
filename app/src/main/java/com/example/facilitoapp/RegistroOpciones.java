@@ -17,6 +17,7 @@ import com.example.facilitoapp.models.catalogs.Role;
 import com.example.facilitoapp.models.catalogs.RoleReponse;
 import com.example.facilitoapp.network.ApiClient;
 import com.example.facilitoapp.network.services.CatalogApiService;
+import com.example.facilitoapp.utils.FacilitoApp;
 
 import java.util.List;
 import java.util.Optional;
@@ -94,11 +95,13 @@ public class RegistroOpciones extends AppCompatActivity {
 
     public void setListeners() {
         btnCliente.setOnClickListener(v -> {
+            FacilitoApp.playClick();
             Intent intent = new Intent(RegistroOpciones.this, RegistroCliente.class);
             startActivity(intent);
         });
 
         btnProveedor.setOnClickListener(v -> {
+            FacilitoApp.playClick();
             Intent intent2 = new Intent(RegistroOpciones.this, RegistroProveedor.class);
             startActivity(intent2);
         });
