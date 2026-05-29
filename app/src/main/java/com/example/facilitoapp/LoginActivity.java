@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ import com.example.facilitoapp.network.services.UserApiService;
 import com.example.facilitoapp.models.user.LoginRequest;
 import com.example.facilitoapp.models.user.LoginResponse;
 import com.example.facilitoapp.models.user.User;
+import com.example.facilitoapp.utils.FacilitoApp;
 import com.example.facilitoapp.utils.SessionManager;
 
 import retrofit2.Call;
@@ -37,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnIngresar;
     private FrameLayout loaderOverlay;
     private UserApiService userApiService;
+    private ImageView imgSeePass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             String password = etPassword.getText().toString().trim();
 
             if (!email.isEmpty() && !password.isEmpty()) {
+                FacilitoApp.playClick();
                 showLoader();
                 LoginRequest loginRequest = new LoginRequest(email, password);
 
@@ -86,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         } else {
                             Toast.makeText(LoginActivity.this,
-                                    "Error en la respuesta: " + response.code(),
+                                    "Usuario o contraseña incorrecto",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -109,6 +114,22 @@ public class LoginActivity extends AppCompatActivity {
             Intent registerView = new Intent(LoginActivity.this, RegistroOpciones.class);
             startActivity(registerView);
         });
+
+        imgSeePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etPassword.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)){
+                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    imgSeePass.setImageResource(R.drawable.invisible);
+                }
+                else{
+                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    imgSeePass.setImageResource(R.drawable.visible);
+                }
+
+                etPassword.setSelection(etPassword.getText().length());
+            }
+        });
     }
 
     private void initViews() {
@@ -119,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
         txtRegistro = findViewById(R.id.txtRegistro);
         btnIngresar = findViewById(R.id.btnIngresar);
         loaderOverlay = findViewById(R.id.loaderOverlay);
+        imgSeePass = findViewById(R.id.imgSeePass);
     }
 
     private void showLoader() {

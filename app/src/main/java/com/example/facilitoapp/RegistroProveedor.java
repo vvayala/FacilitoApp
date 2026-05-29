@@ -31,8 +31,8 @@ public class RegistroProveedor extends AppCompatActivity {
         btnListo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegistroProveedor.this, SolicitarServicio.class);
-                startActivity(intent);
+              //  Intent intent = new Intent(RegistroProveedor.this,);
+                //startActivity(intent);
             }
         });
     }

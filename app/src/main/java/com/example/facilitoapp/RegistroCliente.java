@@ -2,8 +2,11 @@ package com.example.facilitoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +20,10 @@ import com.example.facilitoapp.network.services.UserApiService;
 import com.example.facilitoapp.models.user.LoginResponse;
 import com.example.facilitoapp.models.user.RegisterRequest;
 import com.example.facilitoapp.utils.SessionManager;
+import com.example.facilitoapp.utils.TextFormat;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +34,7 @@ public class RegistroCliente extends AppCompatActivity {
     private EditText txtNombre, txtApellido, txtTelefono, txtDui, txtCorreo, txtContrasena;
     private Button btnRegistro;
     private UserApiService userApiService;
+    private ImageView imgSeePass2;
 
     private static final String CLIENTE_ROLE_ID = "6822f3a7b2f1c4a8b1d2e3f4";
 
@@ -49,15 +57,41 @@ public class RegistroCliente extends AppCompatActivity {
         txtContrasena = findViewById(R.id.txtContrasena);
         btnRegistro = findViewById(R.id.btnRegistro);
         userApiService = ApiClient.getClient().create(UserApiService.class);
+        imgSeePass2 = findViewById(R.id.imgSeePass2);
 
         btnRegistro.setOnClickListener(v -> registroUsuario());
+
+        imgSeePass2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(txtContrasena.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)){
+                    txtContrasena.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    imgSeePass2.setImageResource(R.drawable.invisible);
+                }
+                else{
+                    txtContrasena.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    imgSeePass2.setImageResource(R.drawable.visible);
+                }
+
+                txtContrasena.setSelection(txtContrasena.getText().length());
+            }
+        });
+
+        txtTelefono.addTextChangedListener( new TextFormat(txtTelefono, Arrays.asList(4),"-"));
+        txtDui.addTextChangedListener( new TextFormat(txtDui, Arrays.asList(8),"-"));
+
+
+
+
     }
+
+
 
     private void registroUsuario() {
         String nombre = txtNombre.getText().toString().trim();
         String apellido = txtApellido.getText().toString().trim();
-        String telefono = txtTelefono.getText().toString().trim();
-        String dui = txtDui.getText().toString().trim();
+        String telefono = TextFormat.getRawValue(txtTelefono, "-");
+        String dui = TextFormat.getRawValue(txtDui, "-");
         String correo = txtCorreo.getText().toString().trim();
         String contrasena = txtContrasena.getText().toString().trim();
 

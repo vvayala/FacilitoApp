@@ -95,6 +95,7 @@
                 android:fontFamily="@font/inclusive_sans"
                 android:hint="@string/nombreEjemplo"
                 android:inputType="text"
+                android:maxLength="25"
                 android:paddingStart="6dp"
                 android:textColor="#7640BD"
                 android:textSize="16sp" />
@@ -122,6 +123,7 @@
                 android:fontFamily="@font/inclusive_sans"
                 android:hint="@string/apellidoEjemplo"
                 android:inputType="text"
+                android:maxLength="25"
                 android:paddingStart="6dp"
                 android:textColor="#7640BD"
                 android:textSize="16sp" />
@@ -149,7 +151,7 @@
                 android:fontFamily="@font/inclusive_sans"
                 android:hint="@string/ejemploTelefono"
                 android:inputType="phone"
-                android:maxLength="8"
+                android:maxLength="9"
                 android:paddingStart="6dp"
                 android:textColor="#7640BD" />
 
@@ -175,7 +177,8 @@
                 android:ems="10"
                 android:fontFamily="@font/inclusive_sans"
                 android:hint="@string/duiEjemplo"
-                android:inputType="text"
+                android:inputType="number"
+                android:maxLength="10"
                 android:paddingStart="6dp"
                 android:textColor="#7640BD"
                 android:textSize="16sp" />
@@ -203,6 +206,7 @@
                 android:fontFamily="@font/inclusive_sans"
                 android:hint="@string/emailEjemplo"
                 android:inputType="textEmailAddress"
+                android:maxLength="50"
                 android:paddingStart="6dp"
                 android:textColor="#7640BD" />
 
@@ -217,20 +221,39 @@
                 android:textColor="#7640BD"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/txtContrasena"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/button_login"
-                android:ems="10"
-                android:fontFamily="@font/inclusive_sans"
-                android:hint="@string/contrasenaEjemplo"
-                android:inputType="textPassword"
-                android:paddingStart="6dp"
-                android:textColor="#7640BD" />
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/txtContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/button_login"
+                    android:ems="10"
+                    android:fontFamily="@font/inclusive_sans"
+                    android:hint="@string/contrasenaEjemplo"
+                    android:inputType="textPassword"
+                    android:maxLength="50"
+                    android:paddingStart="6dp"
+                    android:textColor="#7640BD"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imgSeePass2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/txtContrasena"
+                    app:layout_constraintTop_toTopOf="@+id/txtContrasena"
+                    app:srcCompat="@drawable/visible" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/btnRegistro"
