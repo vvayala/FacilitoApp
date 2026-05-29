@@ -56,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            showLoader();
             if (!email.isEmpty() && !password.isEmpty()) {
+                showLoader();
                 LoginRequest loginRequest = new LoginRequest(email, password);
 
                 userApiService.loginUser(loginRequest).enqueue(new Callback<LoginResponse>() {
