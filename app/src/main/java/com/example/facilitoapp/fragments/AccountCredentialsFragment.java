@@ -38,12 +38,11 @@ public class AccountCredentialsFragment extends Fragment {
 
     private RegisterViewModel viewModel;
     private TextInputEditText txtEmail, txtPassword, txtConfirmPassword;
-    private TextInputLayout layoutEmail, layoutPassword, layoutConfirmPassword;
+    private TextInputLayout layoutEmail,  layoutConfirmPassword;
     private Button btnRegister;
     private TextView txtPasswordError;
     private View strengthBar1, strengthBar2, strengthBar3;
 
-    String accountType = viewModel.accountType.getValue();
     private LoadingDialog loadingDialog;
 
     @Override
@@ -56,7 +55,6 @@ public class AccountCredentialsFragment extends Fragment {
         txtPassword      = view.findViewById(R.id.txtPassword);
         txtConfirmPassword = view.findViewById(R.id.txtConfirmPassword);
         layoutEmail      = view.findViewById(R.id.layoutEmail);
-        layoutPassword   = view.findViewById(R.id.layoutPassword);
         layoutConfirmPassword = view.findViewById(R.id.layoutConfirmPassword);
         btnRegister      = view.findViewById(R.id.btnRegister);
         txtPasswordError = view.findViewById(R.id.txtPasswordError);

@@ -22,7 +22,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class BusinessDataFragment extends Fragment {
-
     private RegisterViewModel viewModel;
     private TextInputEditText txtBusinessName, txtBusinessDescription;
     private MaterialButton btnNext;
@@ -32,7 +31,6 @@ public class BusinessDataFragment extends Fragment {
 
     private Uri selectedImageUri = null;
 
-    // Launcher para el selector de imagen
     private final ActivityResultLauncher<String> imagePickerLauncher =
             registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
                 if (uri != null) {
@@ -55,7 +53,6 @@ public class BusinessDataFragment extends Fragment {
         imgBusinessPicture     = view.findViewById(R.id.imgBusinessPicture);
         layoutPlaceholder      = view.findViewById(R.id.layoutPlaceholder);
 
-        // Abrir galería al tocar el círculo
         cardImagePicker.setOnClickListener(v ->
                 imagePickerLauncher.launch("image/*")
         );

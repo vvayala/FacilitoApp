@@ -24,7 +24,7 @@ public class AccountTypeFragment extends Fragment {
     private ImageView checkClient, checkProvider;
     private Button btnNext;
 
-    private String selectedType = ""; // "CLIENT" or "PROVIDER"
+    private String selectedType = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class AccountTypeFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
+
 
         return view;
     }
