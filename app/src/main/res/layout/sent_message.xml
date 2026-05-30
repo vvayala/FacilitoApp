@@ -1,38 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="end"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:paddingStart="64dp"
+    android:paddingEnd="12dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
 
-    <TextView
-        android:id="@+id/txtUserSent"
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="4dp"
-        android:text="Yo"
-        android:textColor="@color/purple_dark"
-        android:textStyle="bold" />
+        app:cardCornerRadius="18dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/deep_purple">
 
-    <TextView
-        android:id="@+id/txtMessageSent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@color/pruple_secondary"
-        android:elevation="2dp"
-        android:padding="12dp"
-        android:radius="12dp"
-        android:text="Mensaje enviado"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/txtMessageSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Mensaje enviado"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:maxWidth="260dp" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/txtTimeSent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:paddingEnd="4dp"
         android:text="14:45"
-        android:textSize="12sp"
-        android:textColor="#888888"
-        android:paddingTop="2dp"/>
+        android:textSize="11sp"
+        android:textColor="#999999" />
+
 </LinearLayout>
