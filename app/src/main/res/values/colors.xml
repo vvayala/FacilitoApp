@@ -10,4 +10,10 @@
     <color name="purple_dark">#311845</color>
     <color name="pruple_secondary">#7640BD</color>
     <color name="gray_secondary">#D9D9DC</color>
+
+    <color name="primary_orange">#F68031</color> // Marca / acentos
+    <color name="deep_purple">#7640BD</color> // Labels / text
+    <color name="light_purple">#EDE7F6</color> // Fondo cards
+    <color name="surface_gray">#F5F5F5</color> // Fondo general
+    <color name="text_dark">#2D2D2D</color>
 </resources>
