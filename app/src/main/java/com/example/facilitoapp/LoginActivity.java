@@ -2,16 +2,10 @@ package com.example.facilitoapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,20 +21,21 @@ import com.example.facilitoapp.models.user.LoginRequest;
 import com.example.facilitoapp.models.user.LoginResponse;
 import com.example.facilitoapp.models.user.User;
 import com.example.facilitoapp.utils.FacilitoApp;
+import com.example.facilitoapp.utils.LoadingDialog;
 import com.example.facilitoapp.utils.SessionManager;
+import com.google.android.material.button.MaterialButton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String APP_PREFS = "facilito_user";
+
     private EditText etEmail, etPassword;
     private TextView txtRegistro;
-    private Button btnIngresar;
-    private FrameLayout loaderOverlay;
+    private MaterialButton btnIngresar;
+    private LoadingDialog loadingDialog;
     private UserApiService userApiService;
-    private ImageView imgSeePass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,113 +43,94 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         getWindow().setNavigationBarColor(android.graphics.Color.TRANSPARENT);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_login), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         initViews();
+        setupListeners();
+    }
 
-        btnIngresar.setOnClickListener(v -> {
-            String email = etEmail.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
+    private void initViews() {
+        userApiService = ApiClient.getClient().create(UserApiService.class);
+        loadingDialog  = new LoadingDialog(this);
 
-            if (!email.isEmpty() && !password.isEmpty()) {
-                FacilitoApp.playClick();
-                showLoader();
-                LoginRequest loginRequest = new LoginRequest(email, password);
+        etEmail     = findViewById(R.id.etEmail);
+        etPassword  = findViewById(R.id.etPassword);
+        txtRegistro = findViewById(R.id.txtRegistro);
+        btnIngresar = findViewById(R.id.btnIngresar);
+    }
 
-                userApiService.loginUser(loginRequest).enqueue(new Callback<LoginResponse>() {
+    private void setupListeners() {
+        btnIngresar.setOnClickListener(v -> attemptLogin());
+
+        txtRegistro.setOnClickListener(v ->
+                startActivity(new Intent(this, RegisterHostingActivity.class))
+        );
+    }
+
+    private void attemptLogin() {
+        String email    = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingresa tu correo y contraseña", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        FacilitoApp.playClick();
+        hideKeyboard();
+        loadingDialog.show("Ingresando...");
+        btnIngresar.setEnabled(false);
+
+        userApiService.loginUser(new LoginRequest(email, password))
+                .enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        hideLoader();
+                        loadingDialog.dismiss();
+                        btnIngresar.setEnabled(true);
 
                         if (response.isSuccessful() && response.body() != null) {
                             LoginResponse loginResponse = response.body();
                             if (loginResponse.isOk()) {
-                                User loggedUser = loginResponse.getUser();
-                                String userId = loggedUser.getId();
-
-                                SessionManager session = new SessionManager(LoginActivity.this);
-                                session.saveUserId(userId);
+                                User user = loginResponse.getUser();
+                                new SessionManager(LoginActivity.this).saveUserId(user.getId());
 
                                 Toast.makeText(LoginActivity.this,
-                                        loginResponse.getMessage() + " Bienvenido " + loggedUser.getName(),
+                                        "Bienvenido de nuevo, " + user.getName() + "! 👋",
                                         Toast.LENGTH_SHORT).show();
 
                                 startActivity(new Intent(LoginActivity.this, MainScreen.class));
+                                finish();
                             } else {
                                 Toast.makeText(LoginActivity.this,
-                                        "Error: " + loginResponse.getMessage(),
+                                        loginResponse.getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             Toast.makeText(LoginActivity.this,
-                                    "Usuario o contraseña incorrecto",
+                                    "Correo o contraseña incorrectos",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
-                        hideLoader();
+                        loadingDialog.dismiss();
+                        btnIngresar.setEnabled(true);
                         Toast.makeText(LoginActivity.this,
-                                "Error de conexión: " + t.getMessage(),
+                                "Connection error: " + t.getMessage(),
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
-            } else {
-                Toast.makeText(LoginActivity.this,
-                        "Ingrese correo y contraseña", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        txtRegistro.setOnClickListener( (v) -> {
-            Intent registerView = new Intent(LoginActivity.this, RegistroOpciones.class);
-            startActivity(registerView);
-        });
-
-        imgSeePass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(etPassword.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)){
-                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    imgSeePass.setImageResource(R.drawable.invisible);
-                }
-                else{
-                    etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    imgSeePass.setImageResource(R.drawable.visible);
-                }
-
-                etPassword.setSelection(etPassword.getText().length());
-            }
-        });
     }
 
-    private void initViews() {
-        userApiService = ApiClient.getClient().create(UserApiService.class);
-
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
-        txtRegistro = findViewById(R.id.txtRegistro);
-        btnIngresar = findViewById(R.id.btnIngresar);
-        loaderOverlay = findViewById(R.id.loaderOverlay);
-        imgSeePass = findViewById(R.id.imgSeePass);
-    }
-
-    private void showLoader() {
-        hideLoader();
-        loaderOverlay.setVisibility(View.VISIBLE);
-    }
-
-    private void hideLoader() {
-        loaderOverlay.setVisibility(View.GONE);
-    }
-
-    private void hideKeyBoard() {
-        View view = this.getCurrentFocus();
-        if(view != null) {
+    private void hideKeyboard() {
+        View view = getCurrentFocus();
+        if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
