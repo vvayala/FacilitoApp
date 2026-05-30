@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,10 +21,13 @@ import android.widget.Toast;
 
 import com.example.facilitoapp.MainScreen;
 import com.example.facilitoapp.R;
+import com.example.facilitoapp.models.business.CreateBusinessBody;
+import com.example.facilitoapp.models.business.CreateBusinessResponse;
 import com.example.facilitoapp.models.register.RegisterViewModel;
 import com.example.facilitoapp.models.user.LoginResponse;
 import com.example.facilitoapp.models.user.RegisterRequest;
 import com.example.facilitoapp.network.ApiClient;
+import com.example.facilitoapp.network.services.BusinessApiService;
 import com.example.facilitoapp.network.services.UserApiService;
 import com.example.facilitoapp.utils.LoadingDialog;
 import com.example.facilitoapp.utils.SessionManager;
@@ -168,16 +172,24 @@ public class AccountCredentialsFragment extends Fragment {
         userApiService.registerUser(request).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                loadingDialog.dismiss();
+                btnRegister.setEnabled(true);
+
                 if (response.isSuccessful() && response.body() != null && response.body().isOk()) {
                     String userId = response.body().getUser().getId();
                     new SessionManager(requireContext()).saveUserId(userId);
 
-                    Toast.makeText(getContext(),
-                            "Bievenido, " + name + "! Cuenta creada correctamente.",
-                            Toast.LENGTH_SHORT).show();
+                    boolean isProvider = "PROVIDER".equals(viewModel.accountType.getValue());
 
-                    startActivity(new Intent(requireActivity(), MainScreen.class));
-                    requireActivity().finish();
+                    if (isProvider) {
+                        createBusinessForProvider(userId);
+                    } else {
+                        Toast.makeText(getContext(),
+                                "Bienvenido, " + name + "! Cuenta creada correctamente.",
+                                Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(requireActivity(), MainScreen.class));
+                        requireActivity().finish();
+                    }
                 } else {
                     Toast.makeText(getContext(),
                             "Registro falló, favor intentar nuevamente.",
@@ -190,6 +202,49 @@ public class AccountCredentialsFragment extends Fragment {
                 Toast.makeText(getContext(),
                         "Connection error: " + t.getMessage(),
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void createBusinessForProvider(String userId) {
+        loadingDialog.show("Configurando tu negocio");
+
+        CreateBusinessBody body = new CreateBusinessBody(
+                viewModel.name.getValue() + " - Negocio",
+                "Negocio de " + viewModel.name.getValue(),
+                "https://example.com/default-business.jpg",
+                userId
+        );
+
+        BusinessApiService businessApiService = ApiClient.getClient().create(BusinessApiService.class);
+        businessApiService.createBusiness(body).enqueue(new Callback<CreateBusinessResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<CreateBusinessResponse> call,
+                                   @NonNull Response<CreateBusinessResponse> response) {
+                loadingDialog.dismiss();
+
+                if (response.isSuccessful() && response.body() != null && response.body().isOk()) {
+                    Toast.makeText(getContext(),
+                            "Bienvenido, " + viewModel.name.getValue() + "! Cuenta creada correctamente.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(),
+                            "Cuenta creada, pero hubo un error al configurar tu negocio.",
+                            Toast.LENGTH_LONG).show();
+                }
+
+                startActivity(new Intent(requireActivity(), MainScreen.class));
+                requireActivity().finish();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<CreateBusinessResponse> call, @NonNull Throwable t) {
+                loadingDialog.dismiss();
+                Toast.makeText(getContext(),
+                        "Cuenta creada, pero error de conexión al configurar negocio.",
+                        Toast.LENGTH_LONG).show();
+                startActivity(new Intent(requireActivity(), MainScreen.class));
+                requireActivity().finish();
             }
         });
     }

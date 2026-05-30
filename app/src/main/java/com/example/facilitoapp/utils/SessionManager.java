@@ -8,6 +8,7 @@ public class SessionManager {
     private static final String KEY_USER_ID    = "user_id";
     private static final String KEY_TOKEN      = "access_token";
     private static final String KEY_REFRESH    = "refresh_token";
+    private static final String KEY_USER_ROLE_ID = "user_role_id";
 
     private final SharedPreferences prefs;
 
@@ -32,6 +33,14 @@ public class SessionManager {
 
     public String getAccessToken() {
         return prefs.getString(KEY_TOKEN, null);
+    }
+
+    public void saveUserRoleId(String roleId) {
+        prefs.edit().putString(KEY_USER_ROLE_ID, roleId).apply();
+    }
+
+    public String getUserRoleId() {
+        return prefs.getString(KEY_USER_ROLE_ID, null);
     }
 
     public void clearSession() {

@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                 User user = loginResponse.getUser();
                                 SessionManager session = new SessionManager(LoginActivity.this);
                                 session.saveUserId(user.getId());
+                                session.saveUserRoleId(user.getUserRoleId());
                                 session.saveTokens(loginResponse.getAccessToken(), loginResponse.getRefreshToken());
                                 ApiClient.reset();
 

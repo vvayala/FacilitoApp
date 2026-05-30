@@ -12,6 +12,6 @@ public class ServiceResponse {
     @SerializedName("services")
     private List<Service> services;
 
-    public boolean isOk()              { return ok; }
+    public boolean isOk() { return ok; }
     public List<Service> getServices() { return services; }
 }

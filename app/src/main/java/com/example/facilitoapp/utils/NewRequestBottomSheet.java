@@ -103,7 +103,7 @@ public class NewRequestBottomSheet extends BottomSheetDialogFragment {
     private void loadServices(ServicesAdapter adapter) {
         ApiClient.getClient()
                 .create(ServicesApiService.class)
-                .getAllServices()
+                .getServicesByUser("")
                 .enqueue(new Callback<ServiceResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<ServiceResponse> call,

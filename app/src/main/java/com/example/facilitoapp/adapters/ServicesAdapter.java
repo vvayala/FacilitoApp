@@ -55,8 +55,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.Servic
 
         ServiceViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtName        = itemView.findViewById(R.id.txtServiceName);
-            txtBusiness    = itemView.findViewById(R.id.txtServiceBusiness);
+            txtName = itemView.findViewById(R.id.txtServiceName);
+            txtBusiness = itemView.findViewById(R.id.txtBusinessName);
             txtDescription = itemView.findViewById(R.id.txtServiceDescription);
         }
 
