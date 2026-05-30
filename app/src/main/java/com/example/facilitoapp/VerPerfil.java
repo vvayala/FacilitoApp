@@ -64,7 +64,6 @@ public class VerPerfil extends AppCompatActivity {
         edtApellidos   = findViewById(R.id.edtApellidos);
         edtDui         = findViewById(R.id.edtDui);
         edtTelefono    = findViewById(R.id.edtTelefono);
-        edtDireccion   = findViewById(R.id.edtDireccion);
         btnEditarPerfil   = findViewById(R.id.btnEditarPerfil);
         imgHeaderSettings = findViewById(R.id.imgHeaderSettings);
         btnEditarPerfil.bringToFront();
@@ -78,7 +77,6 @@ public class VerPerfil extends AppCompatActivity {
             intent.putExtra("lastname", user.getLastName());
             intent.putExtra("dui", user.getDui());
             intent.putExtra("telephone", user.getTelephone());
-            intent.putExtra("address", "Change this address");
             startActivity(intent);
         });
 
@@ -122,8 +120,7 @@ public class VerPerfil extends AppCompatActivity {
     private void bindUserData(User user) {
         edtNombre.setText(user.getName());
         edtApellidos.setText(user.getLastName());
-        edtDui.setText(user.getDui());
-        edtTelefono.setText(user.getTelephone());
-        edtDireccion.setText("San Salvador");
+        edtDui.setText(user.getDui().substring(0,8) + "-"  + user.getDui().substring(8));
+        edtTelefono.setText(user.getTelephone().substring(0,4) + "-"  + user.getTelephone().substring(4));
     }
 }

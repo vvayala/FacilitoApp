@@ -24,8 +24,11 @@ import com.example.facilitoapp.network.ApiClient;
 import com.example.facilitoapp.network.services.UserApiService;
 import com.example.facilitoapp.utils.LoadingDialog;
 import com.example.facilitoapp.utils.SessionManager;
+import com.example.facilitoapp.utils.TextFormat;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +63,10 @@ public class EditarPerfil extends AppCompatActivity {
 
         setupDirtyWatcher();
         setupListeners();
+
+        edtTelefono.addTextChangedListener(new TextFormat(edtTelefono, Arrays.asList(4),"-"));
+        edtDui.addTextChangedListener(new TextFormat(edtDui, Arrays.asList(8),"-"));
+
     }
 
     private void initViews() {
@@ -67,9 +74,12 @@ public class EditarPerfil extends AppCompatActivity {
         edtApellidos   = findViewById(R.id.edtApellidos);
         edtDui         = findViewById(R.id.edtDui);
         edtTelefono    = findViewById(R.id.edtTelefono);
-        edtDireccion   = findViewById(R.id.edtDireccion);
         btnEditarGuardar = findViewById(R.id.btnEditarGuardar);
         loadingDialog  = new LoadingDialog(this);
+
+        edtDui.setEnabled(false);
+        edtDui.setFocusable(false);
+        edtDui.setCursorVisible(false);
     }
 
     private void loadProfileFromIntent() {
@@ -77,9 +87,8 @@ public class EditarPerfil extends AppCompatActivity {
         Intent intent = getIntent();
         edtNombre.setText(intent.getStringExtra("name"));
         edtApellidos.setText(intent.getStringExtra("lastname"));
-        edtDui.setText(intent.getStringExtra("dui"));
-        edtTelefono.setText(intent.getStringExtra("telephone"));
-        edtDireccion.setText(intent.getStringExtra("address"));
+        edtDui.setText(intent.getStringExtra("dui").substring(0,8) + "-" + intent.getStringExtra("dui").substring(8));
+        edtTelefono.setText(intent.getStringExtra("telephone").substring(0,4) + "-" + intent.getStringExtra("telephone").substring(4));
         suppressDirtyCheck = false;
     }
 
@@ -93,7 +102,6 @@ public class EditarPerfil extends AppCompatActivity {
         edtApellidos.addTextChangedListener(watcher);
         edtDui.addTextChangedListener(watcher);
         edtTelefono.addTextChangedListener(watcher);
-        edtDireccion.addTextChangedListener(watcher);
     }
 
     private void setupListeners() {
@@ -126,9 +134,8 @@ public class EditarPerfil extends AppCompatActivity {
         isEditing = true;
         baselineNombre    = getText(edtNombre);
         baselineApellidos = getText(edtApellidos);
-        baselineDui       = getText(edtDui);
+       // baselineDui       = getText(edtDui);
         baselineTelefono  = getText(edtTelefono);
-        baselineDireccion = getText(edtDireccion);
         setEditingEnabled(true);
         btnEditarGuardar.setText("Guardar");
         btnEditarGuardar.setBackgroundTintList(
@@ -150,9 +157,8 @@ public class EditarPerfil extends AppCompatActivity {
         int bgColor = enabled ? R.color.white : R.color.surface_gray;
         setFieldEditable(edtNombre, enabled, bgColor);
         setFieldEditable(edtApellidos, enabled, bgColor);
-        setFieldEditable(edtDui, enabled, bgColor);
+        //setFieldEditable(edtDui, enabled, bgColor);
         setFieldEditable(edtTelefono, enabled, bgColor);
-        setFieldEditable(edtDireccion, enabled, bgColor);
     }
 
     private void setFieldEditable(TextInputEditText field, boolean editable, int bgColorRes) {
@@ -174,9 +180,8 @@ public class EditarPerfil extends AppCompatActivity {
     private boolean hasChanges() {
         return !getText(edtNombre).equals(baselineNombre)
                 || !getText(edtApellidos).equals(baselineApellidos)
-                || !getText(edtDui).equals(baselineDui)
-                || !getText(edtTelefono).equals(baselineTelefono)
-                || !getText(edtDireccion).equals(baselineDireccion);
+             //   || !getText(edtDui).equals(baselineDui)
+                || !getText(edtTelefono).equals(baselineTelefono);
     }
 
     private boolean validateFields() {
@@ -187,14 +192,11 @@ public class EditarPerfil extends AppCompatActivity {
         if (getText(edtApellidos).trim().isEmpty()) {
             edtApellidos.setError("Required"); ok = false;
         }
-        if (!getText(edtDui).trim().matches("\\d{8}-\\d")) {
-            edtDui.setError("Format: 12345678-9"); ok = false;
-        }
+       // if (!getText(edtDui).trim().matches("\\d{8}-\\d")) {
+       //     edtDui.setError("Format: 12345678-9"); ok = false;
+       //}
         if (!getText(edtTelefono).trim().matches("\\d{4}-\\d{4}")) {
             edtTelefono.setError("Format: 1234-5678"); ok = false;
-        }
-        if (getText(edtDireccion).trim().isEmpty()) {
-            edtDireccion.setError("Required"); ok = false;
         }
         return ok;
     }
@@ -205,9 +207,8 @@ public class EditarPerfil extends AppCompatActivity {
         UpdateProfileRequest request = new UpdateProfileRequest(
                 getText(edtNombre).trim(),
                 getText(edtApellidos).trim(),
-                getText(edtDui).trim(),
-                getText(edtTelefono).trim(),
-                getText(edtDireccion).trim()
+                TextFormat.getRawValue(edtDui, "-").trim(),
+                TextFormat.getRawValue(edtTelefono, "-").trim()
         );
 
         loadingDialog.show("Saving changes...");

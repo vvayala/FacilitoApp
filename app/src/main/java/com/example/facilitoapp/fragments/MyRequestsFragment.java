@@ -161,7 +161,7 @@ public class MyRequestsFragment extends Fragment {
                                            @NonNull Response<CreateChatResponse> response) {
                         if (!isAdded()) return;
                         if (!response.isSuccessful() || response.body() == null || !response.body().isOk()) {
-                            Toast.makeText(requireContext(), "Error creating chat", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), "Error creando chat", Toast.LENGTH_SHORT).show();
                             return;
                         }
 

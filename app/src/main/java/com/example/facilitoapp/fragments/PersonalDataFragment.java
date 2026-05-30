@@ -13,7 +13,11 @@ import android.widget.Toast;
 
 import com.example.facilitoapp.R;
 import com.example.facilitoapp.models.register.RegisterViewModel;
+import com.example.facilitoapp.utils.TextFormat;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PersonalDataFragment extends Fragment {
 
@@ -34,6 +38,9 @@ public class PersonalDataFragment extends Fragment {
         txtDui = view.findViewById(R.id.txtDui);
         btnNext = view.findViewById(R.id.btnNext);
 
+        txtTelefono.addTextChangedListener(new TextFormat(txtTelefono, Arrays.asList(4),"-"));
+        txtDui.addTextChangedListener(new TextFormat(txtDui, Arrays.asList(8),"-"));
+
         btnNext.setOnClickListener(v -> {
             String name = txtNombre.getText().toString().trim();
             String lastName = txtApellido.getText().toString().trim();
@@ -45,8 +52,8 @@ public class PersonalDataFragment extends Fragment {
 
             viewModel.name.setValue(name);
             viewModel.lastName.setValue(lastName);
-            viewModel.telephone.setValue(txtTelefono.getText().toString());
-            viewModel.dui.setValue(txtDui.getText().toString());
+            viewModel.telephone.setValue(TextFormat.getRawValue(txtTelefono, "-"));
+            viewModel.dui.setValue(TextFormat.getRawValue(txtDui, "-"));
 
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new AccountTypeFragment())

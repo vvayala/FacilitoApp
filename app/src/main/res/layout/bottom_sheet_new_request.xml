@@ -26,11 +26,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select a Service"
+            android:layout_marginBottom="16dp"
+            android:text="Selecciona un servicio"
             android:textColor="@color/text_dark"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
+            android:textStyle="bold" />
 
         <ProgressBar
             android:id="@+id/loadingServices"
@@ -81,7 +81,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Describe what you need"
+            android:hint="Describe que necesitas"
             android:layout_marginBottom="16dp"
             app:boxCornerRadiusTopStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
@@ -108,7 +108,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="Back"
+            android:text="Volver"
             android:textAllCaps="false"
             android:layout_marginBottom="8dp"
             app:strokeColor="@color/deep_purple"

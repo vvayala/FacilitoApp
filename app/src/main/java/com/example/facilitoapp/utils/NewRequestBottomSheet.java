@@ -163,7 +163,7 @@ public class NewRequestBottomSheet extends BottomSheetDialogFragment {
 
         String customerId = requireArguments().getString(ARG_CUSTOMER_ID);
         btnSubmit.setEnabled(false);
-        btnSubmit.setText("Creating...");
+        btnSubmit.setText("Creando...");
 
         CreateServiceRequestBody body = new CreateServiceRequestBody(
                 customerId, selectedService.getId(), description);

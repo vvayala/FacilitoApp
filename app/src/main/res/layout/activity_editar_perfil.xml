@@ -162,6 +162,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:inputType="textPersonName"
+                            android:maxLength="50"
                             android:textColor="@color/text_dark"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -197,6 +198,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:inputType="textPersonName"
+                            android:maxLength="50"
                             android:textColor="@color/text_dark"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -233,6 +235,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:inputType="text"
+                            android:maxLength="10"
                             android:textColor="@color/text_dark"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -269,44 +272,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:inputType="phone"
+                            android:maxLength="9"
                             android:textColor="@color/text_dark"
                             android:textSize="15sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Address -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/view_profile_address"
-                        android:textColor="@color/deep_purple"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="6dp" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layoutDireccion"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="1dp"
-                        app:boxBackgroundColor="#F5F5F5"
-                        app:boxCornerRadiusTopStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusBottomEnd="12dp"
-                        app:hintEnabled="false"
-                        app:startIconDrawable="@drawable/ic_location"
-                        app:startIconTint="@color/deep_purple">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edtDireccion"
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:inputType="textPostalAddress"
-                            android:textColor="@color/text_dark"
-                            android:textSize="15sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
