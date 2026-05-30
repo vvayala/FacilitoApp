@@ -75,18 +75,25 @@ public class MessagesFragment extends Fragment {
             public void onResponse(@NonNull Call<ChatsListResponse> call,
                                    @NonNull Response<ChatsListResponse> response) {
                 if (!isAdded()) return;
+
                 loadingChats.setVisibility(View.GONE);
 
                 if (!response.isSuccessful() || response.body() == null || !response.body().isOk()) {
+                    adapter.setChats(new java.util.ArrayList<>());
+                    recyclerChats.setVisibility(View.GONE);
                     emptyChatsState.setVisibility(View.VISIBLE);
                     return;
                 }
 
                 List<Chat> chats = response.body().getChats();
+
                 if (chats == null || chats.isEmpty()) {
+                    adapter.setChats(new java.util.ArrayList<>());
+                    recyclerChats.setVisibility(View.GONE);
                     emptyChatsState.setVisibility(View.VISIBLE);
                 } else {
                     adapter.setChats(chats);
+                    emptyChatsState.setVisibility(View.GONE);
                     recyclerChats.setVisibility(View.VISIBLE);
                 }
             }
@@ -94,8 +101,12 @@ public class MessagesFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<ChatsListResponse> call, @NonNull Throwable t) {
                 if (!isAdded()) return;
+
                 loadingChats.setVisibility(View.GONE);
+                adapter.setChats(new java.util.ArrayList<>());
+                recyclerChats.setVisibility(View.GONE);
                 emptyChatsState.setVisibility(View.VISIBLE);
+
                 Toast.makeText(requireContext(), "Connection error", Toast.LENGTH_SHORT).show();
             }
         });

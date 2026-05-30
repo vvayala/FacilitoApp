@@ -54,17 +54,17 @@ public class AccountCredentialsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account_credentials, container, false);
         loadingDialog = new LoadingDialog((AppCompatActivity) requireActivity());
 
-        viewModel        = new ViewModelProvider(requireActivity()).get(RegisterViewModel.class);
-        txtEmail         = view.findViewById(R.id.txtEmail);
-        txtPassword      = view.findViewById(R.id.txtPassword);
+        viewModel = new ViewModelProvider(requireActivity()).get(RegisterViewModel.class);
+        txtEmail = view.findViewById(R.id.txtEmail);
+        txtPassword = view.findViewById(R.id.txtPassword);
         txtConfirmPassword = view.findViewById(R.id.txtConfirmPassword);
-        layoutEmail      = view.findViewById(R.id.layoutEmail);
+        layoutEmail = view.findViewById(R.id.layoutEmail);
         layoutConfirmPassword = view.findViewById(R.id.layoutConfirmPassword);
-        btnRegister      = view.findViewById(R.id.btnRegister);
+        btnRegister = view.findViewById(R.id.btnRegister);
         txtPasswordError = view.findViewById(R.id.txtPasswordError);
-        strengthBar1     = view.findViewById(R.id.strengthBar1);
-        strengthBar2     = view.findViewById(R.id.strengthBar2);
-        strengthBar3     = view.findViewById(R.id.strengthBar3);
+        strengthBar1 = view.findViewById(R.id.strengthBar1);
+        strengthBar2 = view.findViewById(R.id.strengthBar2);
+        strengthBar3 = view.findViewById(R.id.strengthBar3);
 
         // Password strength watcher
         txtPassword.addTextChangedListener(new TextWatcher() {
@@ -176,8 +176,14 @@ public class AccountCredentialsFragment extends Fragment {
                 btnRegister.setEnabled(true);
 
                 if (response.isSuccessful() && response.body() != null && response.body().isOk()) {
-                    String userId = response.body().getUser().getId();
-                    new SessionManager(requireContext()).saveUserId(userId);
+                    LoginResponse loginResponse = response.body();
+                    String userId = loginResponse.getUser().getId();
+                    SessionManager sessionManager = new SessionManager(requireContext());
+                    sessionManager.clearSession();
+                    sessionManager.saveUserId(userId);
+                    sessionManager.saveTokens(loginResponse.getAccessToken(), loginResponse.getRefreshToken());
+
+                    ApiClient.reset();
 
                     boolean isProvider = "PROVIDER".equals(viewModel.accountType.getValue());
 
@@ -187,7 +193,9 @@ public class AccountCredentialsFragment extends Fragment {
                         Toast.makeText(getContext(),
                                 "Bienvenido, " + name + "! Cuenta creada correctamente.",
                                 Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(requireActivity(), MainScreen.class));
+                        Intent intent = new Intent(requireActivity(), MainScreen.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         requireActivity().finish();
                     }
                 } else {
@@ -210,9 +218,9 @@ public class AccountCredentialsFragment extends Fragment {
         loadingDialog.show("Configurando tu negocio");
 
         CreateBusinessBody body = new CreateBusinessBody(
-                viewModel.name.getValue() + " - Negocio",
-                "Negocio de " + viewModel.name.getValue(),
-                "https://example.com/default-business.jpg",
+                viewModel.name.getValue(),
+                viewModel.businessDescription.getValue(),
+                viewModel.businessImageUri.getValue().toString(),
                 userId
         );
 
@@ -233,7 +241,9 @@ public class AccountCredentialsFragment extends Fragment {
                             Toast.LENGTH_LONG).show();
                 }
 
-                startActivity(new Intent(requireActivity(), MainScreen.class));
+                Intent intent = new Intent(requireActivity(), MainScreen.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 requireActivity().finish();
             }
 
@@ -243,7 +253,9 @@ public class AccountCredentialsFragment extends Fragment {
                 Toast.makeText(getContext(),
                         "Cuenta creada, pero error de conexión al configurar negocio.",
                         Toast.LENGTH_LONG).show();
-                startActivity(new Intent(requireActivity(), MainScreen.class));
+                Intent intent = new Intent(requireActivity(), MainScreen.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 requireActivity().finish();
             }
         });
