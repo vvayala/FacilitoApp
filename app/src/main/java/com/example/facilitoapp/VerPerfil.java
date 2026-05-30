@@ -31,13 +31,7 @@ import retrofit2.Response;
 
 public class VerPerfil extends AppCompatActivity {
 
-    private static final String APP_PREFS = "facilito_user";
-    private SharedPreferences prefs;
-    private TextView edtNombre;
-    private TextView edtApellidos;
-    private TextView edtDui;
-    private TextView edtTelefono;
-    private TextView edtDireccion;
+    private TextView edtNombre, edtApellidos, edtDui, edtTelefono, edtDireccion;
     private ImageButton btnEditarPerfil;
     private ImageView imgHeaderSettings;
     private User user;
@@ -48,37 +42,38 @@ public class VerPerfil extends AppCompatActivity {
         EdgeToEdge.enable(this);
         getWindow().setNavigationBarColor(android.graphics.Color.TRANSPARENT);
         setContentView(R.layout.activity_ver_perfil);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        initView();
-        setListeners();
+        initViews();
+        setupListeners();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getUserProfileData();
+        loadUserProfile();
     }
 
-    private void initView() {
-        prefs = getSharedPreferences(APP_PREFS, MODE_PRIVATE);
-
-        edtNombre = findViewById(R.id.edtNombre);
-        edtApellidos = findViewById(R.id.edtApellidos);
-        edtDui = findViewById(R.id.edtDui);
-        edtTelefono = findViewById(R.id.edtTelefono);
-        edtDireccion = findViewById(R.id.edtDireccion);
-        btnEditarPerfil = findViewById(R.id.btnEditarPerfil);
+    private void initViews() {
+        edtNombre      = findViewById(R.id.edtNombre);
+        edtApellidos   = findViewById(R.id.edtApellidos);
+        edtDui         = findViewById(R.id.edtDui);
+        edtTelefono    = findViewById(R.id.edtTelefono);
+        edtDireccion   = findViewById(R.id.edtDireccion);
+        btnEditarPerfil   = findViewById(R.id.btnEditarPerfil);
         imgHeaderSettings = findViewById(R.id.imgHeaderSettings);
+        btnEditarPerfil.bringToFront();
     }
 
-    private void setListeners() {
+    private void setupListeners() {
         btnEditarPerfil.setOnClickListener(v -> {
-            Intent intent = new Intent(VerPerfil.this, EditarPerfil.class);
+            if (user == null) return;
+            Intent intent = new Intent(this, EditarPerfil.class);
             intent.putExtra("name", user.getName());
             intent.putExtra("lastname", user.getLastName());
             intent.putExtra("dui", user.getDui());
@@ -87,55 +82,48 @@ public class VerPerfil extends AppCompatActivity {
             startActivity(intent);
         });
 
-        imgHeaderSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(VerPerfil.this, Ajustes.class);
-                startActivity(intent2);
-            }
-        });
+        imgHeaderSettings.setOnClickListener(v ->
+                startActivity(new Intent(this, Ajustes.class))
+        );
     }
 
-    private void getUserProfileData() {
-        SessionManager session = new SessionManager(this);
-        String userId = session.getUserId();
+    private void loadUserProfile() {
+        String userId = new SessionManager(this).getUserId();
 
-        if(userId == null) {
+        if (userId == null) {
             Util.ShowDefaultErrorMessage(this);
             return;
         }
 
-        UserApiService userService = ApiClient.getClient().create(UserApiService.class);
+        ApiClient.getClient()
+                .create(UserApiService.class)
+                .getUserById(userId)
+                .enqueue(new Callback<UserProfileResponse>() {
+                    @Override
+                    public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
+                        if (!response.isSuccessful() || response.body() == null || !response.body().isOk()) {
+                            Util.ShowDefaultErrorMessage(VerPerfil.this);
+                            return;
+                        }
 
-        userService.getUserById(userId).enqueue(new Callback<UserProfileResponse>() {
-            @Override
-            public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
-                if(!response.isSuccessful() || response.body() == null) {
-                    Util.ShowDefaultErrorMessage(VerPerfil.this);
-                    return;
-                }
+                        user = response.body().user();
+                        bindUserData(user);
+                    }
 
-                UserProfileResponse userProfileResponse = response.body();
-                user = userProfileResponse.user();
+                    @Override
+                    public void onFailure(Call<UserProfileResponse> call, Throwable t) {
+                        Log.e("VerPerfil", "Error: " + t.getMessage());
+                        Toast.makeText(VerPerfil.this,
+                                "Connection error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
-                if(!userProfileResponse.isOk()) {
-                    Util.ShowDefaultErrorMessage(VerPerfil.this);
-                    return;
-                }
-
-                User user = userProfileResponse.user();
-                edtNombre.setText(user.getName());
-                edtApellidos.setText(user.getLastName());
-
-                edtDui.setText(user.getDui());
-                edtTelefono.setText(user.getTelephone());
-                edtDireccion.setText("San Salvador");
-            }
-
-            @Override
-            public void onFailure(Call<UserProfileResponse> call, Throwable t) {
-                Log.e("API", "Error " + t.getMessage());
-            }
-        });
+    private void bindUserData(User user) {
+        edtNombre.setText(user.getName());
+        edtApellidos.setText(user.getLastName());
+        edtDui.setText(user.getDui());
+        edtTelefono.setText(user.getTelephone());
+        edtDireccion.setText("San Salvador");
     }
 }
