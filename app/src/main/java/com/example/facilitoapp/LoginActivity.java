@@ -97,7 +97,10 @@ public class LoginActivity extends AppCompatActivity {
                             LoginResponse loginResponse = response.body();
                             if (loginResponse.isOk()) {
                                 User user = loginResponse.getUser();
-                                new SessionManager(LoginActivity.this).saveUserId(user.getId());
+                                SessionManager session = new SessionManager(LoginActivity.this);
+                                session.saveUserId(user.getId());
+                                session.saveTokens(loginResponse.getAccessToken(), loginResponse.getRefreshToken());
+                                ApiClient.reset();
 
                                 Toast.makeText(LoginActivity.this,
                                         "Bienvenido de nuevo, " + user.getName() + "! 👋",

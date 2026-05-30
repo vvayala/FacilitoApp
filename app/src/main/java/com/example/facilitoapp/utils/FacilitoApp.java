@@ -7,6 +7,7 @@ import android.media.SoundPool;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.facilitoapp.R;
+import com.example.facilitoapp.network.ApiClient;
 
 public class FacilitoApp extends Application {
 
@@ -19,6 +20,7 @@ public class FacilitoApp extends Application {
     public void onCreate() {
         super.onCreate();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        ApiClient.init(this);
         prefs = getSharedPreferences("settings", MODE_PRIVATE);
 
         soundPool = new SoundPool.Builder()

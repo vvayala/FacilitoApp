@@ -141,4 +141,13 @@
 
     <!--  EDIT PROFILE ACTIVITY  -->
     <string name="edit_profile_title">Editar Pefil</string>
+
+    <!--  NEW REQUEST ACTIVITY  -->
+    <string name="my_request_title">Mis Solicitudes</string>
+    <string name="my_request_no_data">Sin solicitudes aún</string>
+    <string name="my_request_create_request">Crear nueva solicitud</string>
+
+    <string name="new_request_title">Nueva Solicitud de Servicio</string>
+    <string name="new_request_description">Describe lo que necesitas</string>
+    <string name="new_request_btn_create">Crear solicitud</string>
 </resources>

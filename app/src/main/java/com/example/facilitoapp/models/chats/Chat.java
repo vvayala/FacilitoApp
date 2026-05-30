@@ -1,7 +1,7 @@
 package com.example.facilitoapp.models.chats;
 
 import com.example.facilitoapp.models.business.Business;
-import com.example.facilitoapp.models.service.ServiceRequest;
+import com.example.facilitoapp.models.service.ServiceRequestDetail;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.annotations.SerializedName;
@@ -28,16 +28,16 @@ public class Chat {
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
-    public ServiceRequest getServiceRequest() {
+    public ServiceRequestDetail getServiceRequest() {
         if (serviceRequestId == null) return null;
         Gson gson = new Gson();
 
         if (serviceRequestId.isJsonPrimitive()) {
-            ServiceRequest sr = new ServiceRequest();
+            ServiceRequestDetail sr = new ServiceRequestDetail();
             sr.setId(serviceRequestId.getAsString());
             return sr;
         } else if (serviceRequestId.isJsonObject()) {
-            return gson.fromJson(serviceRequestId, ServiceRequest.class);
+            return gson.fromJson(serviceRequestId, ServiceRequestDetail.class);
         }
         return null;
     }
