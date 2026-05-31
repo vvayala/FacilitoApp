@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.facilitoapp.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -26,6 +30,17 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     public ChatAdapter() {
+    }
+
+    private static String formatTime(String rawDate) {
+        try {
+            SimpleDateFormat input  = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
+            SimpleDateFormat output = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            Date date = input.parse(rawDate.trim());
+            return date != null ? output.format(date) : rawDate;
+        } catch (ParseException e) {
+            return rawDate;
+        }
     }
 
     @Override
@@ -70,19 +85,17 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     // ViewHolder for sent messages
     static class SentViewHolder extends RecyclerView.ViewHolder {
-        TextView txtUserSent, txtMessageSent, txtTimeSent;
+        TextView txtMessageSent, txtTimeSent;
 
         SentViewHolder(View itemView) {
             super(itemView);
-            txtUserSent = itemView.findViewById(R.id.txtUserSent);
             txtMessageSent = itemView.findViewById(R.id.txtMessageSent);
             txtTimeSent = itemView.findViewById(R.id.txtTimeSent);
         }
 
         void bind(ChatMessages messages) {
             txtMessageSent.setText(messages.getMessageContent().trim());
-            txtTimeSent.setText(messages.getTimeSent().trim());
-            txtUserSent.setText(messages.getSender_id().getName().trim());
+            txtTimeSent.setText(formatTime(messages.getTimeSent()));
         }
     }
 
@@ -98,9 +111,9 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
 
         void bind(ChatMessages messages) {
-            txtUserReceived.setText(messages.getSender_id().getName().trim() );
+            txtUserReceived.setText(messages.getSender_id().getName().trim());
             txtMessageReceived.setText(messages.getMessageContent().trim());
-            txtTimeReceived.setText(messages.getTimeSent().trim());
+            txtTimeReceived.setText(formatTime(messages.getTimeSent()));
         }
     }
     public void setCurrentUserId(String usuarioActualId) {

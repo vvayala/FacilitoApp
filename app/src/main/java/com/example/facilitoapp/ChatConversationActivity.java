@@ -38,8 +38,9 @@ import retrofit2.Retrofit;
 public class ChatConversationActivity extends AppCompatActivity {
 
     public static final String EXTRA_CHAT_TITLE = "Chat";
-    private TextView txtConversationTitle, btnBackConversation;
-    private ImageButton imgAddPicture, imgSendMessage;
+    private TextView txtConversationTitle;
+    private ImageButton btnBackConversation;
+    private ImageButton imgSendMessage;
     private EditText etMessage2Send;
     private RecyclerView rvChats;
     private String currentUser, newMessage, currentChatId, businessName;
@@ -59,7 +60,6 @@ public class ChatConversationActivity extends AppCompatActivity {
         currentUser = new SessionManager(this).getUserId();
         txtConversationTitle = findViewById(R.id.txtConversationTitle);
         btnBackConversation = findViewById(R.id.btnBackConversation);
-        imgAddPicture = findViewById(R.id.imgAddPicture);
         imgSendMessage = findViewById(R.id.imgSendMessage);
         etMessage2Send = findViewById(R.id.etMessage2Send);
         rvChats = findViewById(R.id.rvChats);

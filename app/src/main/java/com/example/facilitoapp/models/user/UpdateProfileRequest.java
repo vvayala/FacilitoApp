@@ -19,14 +19,10 @@ public class UpdateProfileRequest {
     @SerializedName("telephone")
     private String telephone;
 
-    @SerializedName("address")
-    private String address;
-
-    public UpdateProfileRequest(String name, String lastname, String dui, String telephone, String address) {
+    public UpdateProfileRequest(String name, String lastname, String dui, String telephone) {
         this.name = name;
         this.lastname = lastname;
         this.dui = dui;
         this.telephone = telephone;
-        this.address = address;
     }
 }

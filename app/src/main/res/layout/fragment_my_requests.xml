@@ -1,312 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.MyRequestsFragment">
+    android:background="@color/surface_gray">
+
+    <TextView
+        android:id="@+id/txtMyRequestsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/my_request_title"
+        android:textColor="@color/primary_orange"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/loadingIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/emptyState"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="16dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="120dp">
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_empty_box"
+            android:alpha="0.4"
+            android:contentDescription="@null" />
 
         <TextView
-            android:id="@+id/txtMyRequestsTitle"
+            android:layout_marginTop="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inclusive_sans"
-            android:text="Mis solicitudes"
-            android:textColor="@color/orange_primary"
-            android:textSize="38sp" />
+            android:text="@string/my_request_no_data"
+            android:textColor="@color/text_dark"
+            android:textSize="16sp"
+            android:alpha="0.5" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/card_my_request_bg"
-            android:padding="12dp">
+        <Button
+            android:id="@+id/btnNewRequestEmpty"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/my_request_create_request"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/primary_orange"
+            app:cornerRadius="24dp" />
 
-            <ImageView
-                android:id="@+id/imgRequestUser1"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:contentDescription="@string/usuario"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_user" />
-
-            <TextView
-                android:id="@+id/txtRequestName1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Mecánica General - Juan Mecánico"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgRequestUser1"
-                app:layout_constraintTop_toTopOf="@+id/imgRequestUser1" />
-
-            <TextView
-                android:id="@+id/txtRequestCategory1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Carpintería"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtRequestName1"
-                app:layout_constraintTop_toBottomOf="@+id/txtRequestName1" />
-
-            <TextView
-                android:id="@+id/txtRequestDesc1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Necesito un par de muebles para mi casa ya que me acabo de mudar"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgRequestUser1" />
-
-            <Button
-                android:id="@+id/btnViewRequest1"
-                android:layout_width="124dp"
-                android:layout_height="44dp"
-                android:background="@drawable/button_view_request_bg"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Detalles"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/card_my_request_bg"
-            android:padding="12dp">
-
-            <ImageView
-                android:id="@+id/imgRequestUser2"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:contentDescription="@string/usuario"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_user" />
-
-            <TextView
-                android:id="@+id/txtRequestName2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Mecánica General - Juan Mecánico"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgRequestUser2"
-                app:layout_constraintTop_toTopOf="@+id/imgRequestUser2" />
-
-            <TextView
-                android:id="@+id/txtRequestCategory2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Carpintería"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtRequestName2"
-                app:layout_constraintTop_toBottomOf="@+id/txtRequestName2" />
-
-            <TextView
-                android:id="@+id/txtRequestDesc2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Necesito un par de muebles para mi casa ya que me acabo de mudar"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgRequestUser2" />
-
-            <Button
-                android:id="@+id/btnViewRequest2"
-                android:layout_width="124dp"
-                android:layout_height="44dp"
-                android:background="@drawable/button_view_request_bg"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Detalles"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/card_my_request_bg"
-            android:padding="12dp">
-
-            <ImageView
-                android:id="@+id/imgRequestUser3"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:contentDescription="@string/usuario"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_user" />
-
-            <TextView
-                android:id="@+id/txtRequestName3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Mecánica General - Juan Mecánico"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgRequestUser3"
-                app:layout_constraintTop_toTopOf="@+id/imgRequestUser3" />
-
-            <TextView
-                android:id="@+id/txtRequestCategory3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Carpintería"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtRequestName3"
-                app:layout_constraintTop_toBottomOf="@+id/txtRequestName3" />
-
-            <TextView
-                android:id="@+id/txtRequestDesc3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Necesito un par de muebles para mi casa ya que me acabo de mudar"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgRequestUser3" />
-
-            <Button
-                android:id="@+id/btnViewRequest3"
-                android:layout_width="124dp"
-                android:layout_height="44dp"
-                android:background="@drawable/button_view_request_bg"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Detalles"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/card_my_request_bg"
-            android:padding="12dp">
-
-            <ImageView
-                android:id="@+id/imgRequestUser4"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:contentDescription="@string/usuario"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icon_user" />
-
-            <TextView
-                android:id="@+id/txtRequestName4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Mecánica General - Juan Mecánico"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgRequestUser4"
-                app:layout_constraintTop_toTopOf="@+id/imgRequestUser4" />
-
-            <TextView
-                android:id="@+id/txtRequestCategory4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Carpintería"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtRequestName4"
-                app:layout_constraintTop_toBottomOf="@+id/txtRequestName4" />
-
-            <TextView
-                android:id="@+id/txtRequestDesc4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Necesito un par de muebles para mi casa ya que me acabo de mudar"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgRequestUser4" />
-
-            <Button
-                android:id="@+id/btnViewRequest4"
-                android:layout_width="124dp"
-                android:layout_height="44dp"
-                android:background="@drawable/button_view_request_bg"
-                android:fontFamily="@font/inclusive_sans"
-                android:text="Ver solicitud"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
-</ScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerRequests"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMyRequestsTitle" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNewRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_add"
+        android:contentDescription="@null"
+        app:backgroundTint="@color/primary_orange"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

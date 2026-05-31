@@ -82,4 +82,72 @@
     <string name="editar">Editar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="register_button_next">Continuar</string>
+    <string name="register_button_create">Crear cuenta</string>
+
+    <!--  LOGIN ACTIVITY  -->
+    <string name="login_title">Bienvenido</string>
+    <string name="login_description">Ingresa a tu cuenta para continuar</string>
+    <string name="login_email_hint">Correo electrónico</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_btn_sign_in">Ingresar</string>
+    <string name="login_dont_have_account">¿Aún no tienes cuenta?</string>
+    <string name="login_join_now">Registrate ahora</string>
+
+    <!--  REGISTER ACTIVITY -->
+    <string name="register_description">Conectando clientes con proveedores</string>
+
+    <!--  STRING ACCOUNT TYPE ACTIVITY  -->
+    <string name="account_type_title">Tipo de Cuenta</string>
+    <string name="account_type_description">¿Cómo quieres usar Facilito?</string>
+    <string name="account_type_client_role">Cliente</string>
+    <string name="account_type_client_role_description">Busca y contrata servicios cerca de ti</string>
+    <string name="account_type_provider_role">Proveedor</string>
+    <string name="account_type_provider_role_description">Ofrece tus servicio y has crecer tu negocio</string>
+    <string name="account_type_step">Paso 2 de 3: Tipo de Cuenta</string>
+
+    <!--  STRING ACCOUNT CREDENTIALS  -->
+    <string name="account_credentials_title">Credenciales</string>
+    <string name="account_credentials_description">Configura tu correo y contraseña</string>
+    <string name="account_credentials_email_hint">micorreo@email.com</string>
+    <string name="account_credentials_password_hint">Mínimo 8 caracteres</string>
+    <string name="account_credentials_confirm_password_hint">Confirmar contraseña</string>
+    <string name="account_credentials_password_strength">Contraseña segura</string>
+    <string name="account_credentials_step">Paso 3 de 3 - Credenciales</string>
+
+    <string name="business_data_title">Información del Negocio</string>
+    <string name="business_data_description">Cuéntale a tus clientes de tu negocio</string>
+    <string name="business_data_photo">Foto del negocio</string>
+    <string name="business_data_add_photo">Agregar foto</string>
+    <string name="business_data_name">Nombre del negocio</string>
+    <string name="business_data_name_hint">ej. Reparaciones Juan Mécanico</string>
+    <string name="business_data_business_description">Descripción del negocio</string>
+    <string name="business_data_business_description_hint">Describe los tipos de servicio que ofreces</string>
+    <string name="business_data_step">Paso 3 de 4 - Detalles del negocio</string>
+    <string name="title_activity_register_hosting">RegisterHostingActivity</string>
+
+    <string name="dialog_loading_title">Creando tu cuenta...</string>
+    <string name="dialog_loading_text">Por favor espera</string>
+
+    <!--    VIEW PROFILE ACTIVITY  -->
+    <string name="view_profile_title">Mi Perfil</string>
+    <string name="view_profile_subtitle">Información Personal</string>
+    <string name="view_profile_name">Nombre</string>
+    <string name="view_profile_lastname">Apellidos</string>
+    <string name="view_profile_dui">DUI</string>
+    <string name="view_profile_phone">Teléfono</string>
+    <string name="view_profile_address">Dirección</string>
+
+    <!--  EDIT PROFILE ACTIVITY  -->
+    <string name="edit_profile_title">Editar Pefil</string>
+
+    <!--  NEW REQUEST ACTIVITY  -->
+    <string name="my_request_title">Mis Solicitudes</string>
+    <string name="my_request_no_data">Sin solicitudes aún</string>
+    <string name="my_request_create_request">Crear nueva solicitud</string>
+
+    <string name="new_request_title">Nueva Solicitud de Servicio</string>
+    <string name="new_request_description">Describe lo que necesitas</string>
+    <string name="new_request_btn_create">Crear solicitud</string>
 </resources>

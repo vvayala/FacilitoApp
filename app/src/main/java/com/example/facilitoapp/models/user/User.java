@@ -23,7 +23,7 @@ public class User {
     private String email;
 
     @SerializedName("user_role_id")
-    private String roleId;
+    private String userRoleId;
 
     public User() {}
 
@@ -35,7 +35,7 @@ public class User {
         this.telephone = telephone;
         this.dui = dui;
         this.email = email;
-        this.roleId = roleId;
+        this.userRoleId = roleId;
     }
 
     // Getters y Setters
@@ -57,7 +57,7 @@ public class User {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public String getRoleId() { return roleId; }
-    public void setRoleId(String roleId) { this.roleId = roleId; }
+    public String getUserRoleId() { return userRoleId; }
+    public void setRoleId(String roleId) { this.userRoleId = roleId; }
 
 }
