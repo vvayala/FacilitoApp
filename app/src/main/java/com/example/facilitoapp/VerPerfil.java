@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class VerPerfil extends AppCompatActivity {
 
-    private TextView edtNombre, edtApellidos, edtDui, edtTelefono, edtDireccion;
+    private TextView edtNombre, edtApellidos, edtDui, edtEmail, edtTelefono, edtDireccion;
     private ImageButton btnEditarPerfil;
     private ImageView imgHeaderSettings;
     private User user;
@@ -60,11 +60,13 @@ public class VerPerfil extends AppCompatActivity {
     }
 
     private void initViews() {
-        edtNombre      = findViewById(R.id.edtNombre);
-        edtApellidos   = findViewById(R.id.edtApellidos);
-        edtDui         = findViewById(R.id.edtDui);
-        edtTelefono    = findViewById(R.id.edtTelefono);
-        btnEditarPerfil   = findViewById(R.id.btnEditarPerfil);
+        edtNombre = findViewById(R.id.edtNombre);
+        edtApellidos = findViewById(R.id.edtApellidos);
+        edtDui = findViewById(R.id.edtDui);
+        edtEmail = findViewById(R.id.edtEmail);
+        edtTelefono = findViewById(R.id.edtTelefono);
+        edtDireccion = findViewById(R.id.edtDireccion);
+        btnEditarPerfil = findViewById(R.id.btnEditarPerfil);
         imgHeaderSettings = findViewById(R.id.imgHeaderSettings);
         btnEditarPerfil.bringToFront();
     }
@@ -76,7 +78,9 @@ public class VerPerfil extends AppCompatActivity {
             intent.putExtra("name", user.getName());
             intent.putExtra("lastname", user.getLastName());
             intent.putExtra("dui", user.getDui());
+            intent.putExtra("email", user.getEmail());
             intent.putExtra("telephone", user.getTelephone());
+            intent.putExtra("address", user.getAddress());
             startActivity(intent);
         });
 
@@ -120,7 +124,9 @@ public class VerPerfil extends AppCompatActivity {
     private void bindUserData(User user) {
         edtNombre.setText(user.getName());
         edtApellidos.setText(user.getLastName());
-        edtDui.setText(user.getDui().substring(0,8) + "-"  + user.getDui().substring(8));
-        edtTelefono.setText(user.getTelephone().substring(0,4) + "-"  + user.getTelephone().substring(4));
+        edtDui.setText(user.getDui().substring(0, 8) + "-" + user.getDui().substring(8));
+        edtEmail.setText(user.getEmail());
+        edtTelefono.setText(user.getTelephone().substring(0, 4) + "-" + user.getTelephone().substring(4));
+        edtDireccion.setText(user.getAddress());
     }
 }

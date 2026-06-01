@@ -16,6 +16,9 @@ public class User {
     @SerializedName("telephone")
     private String telephone;
 
+    @SerializedName("address")
+    private String address;
+
     @SerializedName("dui")
     private String dui;
 
@@ -27,12 +30,13 @@ public class User {
 
     public User() {}
 
-    public User(String id, String name, String lastName, String telephone,
+    public User(String id, String name, String lastName, String telephone, String address,
                 String dui, String email, String roleId) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.telephone = telephone;
+        this.address = address;
         this.dui = dui;
         this.email = email;
         this.userRoleId = roleId;
@@ -50,6 +54,8 @@ public class User {
 
     public String getTelephone() { return telephone; }
     public void setTelephone(String telephone) { this.telephone = telephone; }
+
+    public String getAddress() { return address; }
 
     public String getDui() { return dui; }
     public void setDui(String dui) { this.dui = dui; }

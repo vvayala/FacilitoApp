@@ -5,16 +5,18 @@ public class RegisterRequest {
     private String last_name;
     private String telephone;
     private String dui;
+    private String address;
     private String email;
     private String password;
     private String user_role_id;
 
-    public RegisterRequest(String name, String last_name, String telephone, String dui,
+    public RegisterRequest(String name, String last_name, String telephone, String dui, String address,
                           String email, String password, String user_role_id) {
         this.name = name;
         this.last_name = last_name;
         this.telephone = telephone;
         this.dui = dui;
+        this.address = address;
         this.email = email;
         this.password = password;
         this.user_role_id = user_role_id;

@@ -10,6 +10,7 @@ public class RegisterViewModel extends ViewModel {
     public MutableLiveData<String> name = new MutableLiveData<>("");
     public MutableLiveData<String> lastName = new MutableLiveData<>("");
     public MutableLiveData<String> telephone = new MutableLiveData<>("");
+    public MutableLiveData<String> address = new MutableLiveData<>("");
     public MutableLiveData<String> dui = new MutableLiveData<>("");
     public MutableLiveData<String> accountType = new MutableLiveData<>("");
     public MutableLiveData<String> email = new MutableLiveData<>("");

@@ -25,6 +25,8 @@
     <string name="registro">Registro</string>
     <string name="nombreEjemplo">Juan</string>
     <string name="nombre">Nombre:</string>
+    <string name="direccion">Dirección:</string>
+    <string name="direccion_ejemplo">San Salvador</string>
     <string name="ejemploTelefono">1234-5678</string>
     <string name="dui">DUI:</string>
     <string name="duiEjemplo">12345678-9</string>
@@ -136,6 +138,7 @@
     <string name="view_profile_name">Nombre</string>
     <string name="view_profile_lastname">Apellidos</string>
     <string name="view_profile_dui">DUI</string>
+    <string name="view_profile_email">Correo</string>
     <string name="view_profile_phone">Teléfono</string>
     <string name="view_profile_address">Dirección</string>
 

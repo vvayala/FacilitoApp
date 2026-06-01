@@ -42,7 +42,7 @@ public class AccountCredentialsFragment extends Fragment {
 
     private RegisterViewModel viewModel;
     private TextInputEditText txtEmail, txtPassword, txtConfirmPassword;
-    private TextInputLayout layoutEmail,  layoutConfirmPassword;
+    private TextInputLayout layoutEmail, layoutConfirmPassword;
     private Button btnRegister;
     private TextView txtPasswordError;
     private View strengthBar1, strengthBar2, strengthBar3;
@@ -68,8 +68,14 @@ public class AccountCredentialsFragment extends Fragment {
 
         // Password strength watcher
         txtPassword.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
                 updatePasswordStrength(s.toString());
@@ -78,8 +84,14 @@ public class AccountCredentialsFragment extends Fragment {
 
         // Confirm password watcher
         txtConfirmPassword.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
                 String pass = txtPassword.getText().toString();
@@ -119,9 +131,9 @@ public class AccountCredentialsFragment extends Fragment {
     }
 
     private void attemptRegister() {
-        String email    = txtEmail.getText().toString().trim();
+        String email = txtEmail.getText().toString().trim();
         String password = txtPassword.getText().toString().trim();
-        String confirm  = txtConfirmPassword.getText().toString().trim();
+        String confirm = txtConfirmPassword.getText().toString().trim();
 
         // Validaciones
         if (email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
@@ -152,11 +164,12 @@ public class AccountCredentialsFragment extends Fragment {
         loadingDialog.show("Creando tu cuenta");
         btnRegister.setEnabled(false);
 
-        String name     = viewModel.name.getValue();
+        String name = viewModel.name.getValue();
         String lastName = viewModel.lastName.getValue();
-        String phone    = viewModel.telephone.getValue();
-        String dui      = viewModel.dui.getValue();
-        String email    = viewModel.email.getValue();
+        String phone = viewModel.telephone.getValue();
+        String dui = viewModel.dui.getValue();
+        String address = viewModel.address.getValue();
+        String email = viewModel.email.getValue();
         String password = viewModel.password.getValue();
 
         String accountType = viewModel.accountType.getValue();
@@ -165,7 +178,7 @@ public class AccountCredentialsFragment extends Fragment {
                 : viewModel.clientRoleId.getValue();
 
         RegisterRequest request = new RegisterRequest(
-                name, lastName, phone, dui, email, password, roleId
+                name, lastName, phone, dui, address, email, password, roleId
         );
 
         UserApiService userApiService = ApiClient.getClient().create(UserApiService.class);

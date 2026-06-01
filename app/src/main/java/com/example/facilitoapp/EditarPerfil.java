@@ -2,6 +2,7 @@ package com.example.facilitoapp;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,13 +37,13 @@ import retrofit2.Response;
 
 public class EditarPerfil extends AppCompatActivity {
 
-    private TextInputEditText edtNombre, edtApellidos, edtDui, edtTelefono, edtDireccion;
+    private TextInputEditText edtNombre, edtApellidos, edtDui, edtEmail, edtTelefono, edtDireccion;
     private Button btnEditarGuardar;
     private LoadingDialog loadingDialog;
     private boolean isEditing = false;
     private boolean hasUnsavedChanges = false;
     private boolean suppressDirtyCheck = false;
-    private String baselineNombre, baselineApellidos, baselineDui, baselineTelefono, baselineDireccion;
+    private String baselineNombre, baselineApellidos, baselineDui, baselineEmail, baselineTelefono, baselineDireccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +71,14 @@ public class EditarPerfil extends AppCompatActivity {
     }
 
     private void initViews() {
-        edtNombre      = findViewById(R.id.edtNombre);
-        edtApellidos   = findViewById(R.id.edtApellidos);
-        edtDui         = findViewById(R.id.edtDui);
-        edtTelefono    = findViewById(R.id.edtTelefono);
+        edtNombre = findViewById(R.id.edtNombre);
+        edtApellidos = findViewById(R.id.edtApellidos);
+        edtDui = findViewById(R.id.edtDui);
+        edtEmail = findViewById(R.id.edtEmail);
+        edtTelefono = findViewById(R.id.edtTelefono);
+        edtDireccion = findViewById(R.id.edtDireccion);
         btnEditarGuardar = findViewById(R.id.btnEditarGuardar);
-        loadingDialog  = new LoadingDialog(this);
+        loadingDialog = new LoadingDialog(this);
 
         edtDui.setEnabled(false);
         edtDui.setFocusable(false);
@@ -88,7 +91,9 @@ public class EditarPerfil extends AppCompatActivity {
         edtNombre.setText(intent.getStringExtra("name"));
         edtApellidos.setText(intent.getStringExtra("lastname"));
         edtDui.setText(intent.getStringExtra("dui").substring(0,8) + "-" + intent.getStringExtra("dui").substring(8));
+        edtEmail.setText(intent.getStringExtra("email"));
         edtTelefono.setText(intent.getStringExtra("telephone").substring(0,4) + "-" + intent.getStringExtra("telephone").substring(4));
+        edtDireccion.setText(intent.getStringExtra("address"));
         suppressDirtyCheck = false;
     }
 
@@ -101,7 +106,9 @@ public class EditarPerfil extends AppCompatActivity {
         edtNombre.addTextChangedListener(watcher);
         edtApellidos.addTextChangedListener(watcher);
         edtDui.addTextChangedListener(watcher);
+        edtEmail.addTextChangedListener(watcher);
         edtTelefono.addTextChangedListener(watcher);
+        edtDireccion.addTextChangedListener(watcher);
     }
 
     private void setupListeners() {
@@ -135,7 +142,9 @@ public class EditarPerfil extends AppCompatActivity {
         baselineNombre    = getText(edtNombre);
         baselineApellidos = getText(edtApellidos);
        // baselineDui       = getText(edtDui);
+        baselineEmail = getText(edtEmail);
         baselineTelefono  = getText(edtTelefono);
+        baselineDireccion = getText(edtDireccion);
         setEditingEnabled(true);
         btnEditarGuardar.setText("Guardar");
         btnEditarGuardar.setBackgroundTintList(
@@ -158,7 +167,9 @@ public class EditarPerfil extends AppCompatActivity {
         setFieldEditable(edtNombre, enabled, bgColor);
         setFieldEditable(edtApellidos, enabled, bgColor);
         //setFieldEditable(edtDui, enabled, bgColor);
+        setFieldEditable(edtEmail, enabled, bgColor);
         setFieldEditable(edtTelefono, enabled, bgColor);
+        setFieldEditable(edtDireccion, enabled, bgColor);
     }
 
     private void setFieldEditable(TextInputEditText field, boolean editable, int bgColorRes) {
@@ -169,6 +180,7 @@ public class EditarPerfil extends AppCompatActivity {
         // Cambiar el fondo del TextInputLayout padre para feedback visual
         if (field.getParent() != null && field.getParent().getParent() instanceof TextInputLayout) {
             TextInputLayout layout = (TextInputLayout) field.getParent().getParent();
+            layout.setBoxStrokeColor(Color.BLACK);
             layout.setBoxBackgroundColor(ContextCompat.getColor(this, bgColorRes));
         }
     }
@@ -187,16 +199,20 @@ public class EditarPerfil extends AppCompatActivity {
     private boolean validateFields() {
         boolean ok = true;
         if (getText(edtNombre).trim().isEmpty()) {
-            edtNombre.setError("Required"); ok = false;
+            edtNombre.setError("Campo requerido"); ok = false;
         }
         if (getText(edtApellidos).trim().isEmpty()) {
-            edtApellidos.setError("Required"); ok = false;
+            edtApellidos.setError("Campo requerido"); ok = false;
         }
        // if (!getText(edtDui).trim().matches("\\d{8}-\\d")) {
        //     edtDui.setError("Format: 12345678-9"); ok = false;
        //}
         if (!getText(edtTelefono).trim().matches("\\d{4}-\\d{4}")) {
-            edtTelefono.setError("Format: 1234-5678"); ok = false;
+            edtTelefono.setError("Formato: 1234-5678"); ok = false;
+        }
+
+        if(getText(edtDireccion).trim().isEmpty()) {
+            edtDireccion.setError("Campo requerido"); ok = false;
         }
         return ok;
     }
@@ -208,10 +224,12 @@ public class EditarPerfil extends AppCompatActivity {
                 getText(edtNombre).trim(),
                 getText(edtApellidos).trim(),
                 TextFormat.getRawValue(edtDui, "-").trim(),
-                TextFormat.getRawValue(edtTelefono, "-").trim()
+                getText(edtEmail).trim(),
+                TextFormat.getRawValue(edtTelefono, "-").trim(),
+                getText(edtDireccion).trim()
         );
 
-        loadingDialog.show("Saving changes...");
+        loadingDialog.show("Guardando cambios...");
         btnEditarGuardar.setEnabled(false);
 
         ApiClient.getClient()
@@ -245,7 +263,7 @@ public class EditarPerfil extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setMessage("Tienes cambios sin guardar. ¿Deseas salir sin guardar?")
                 .setNegativeButton("Cancelar", (d, w) -> d.dismiss())
-                .setPositiveButton("Descartar", (d, w) -> onDiscard.run())
+                .setPositiveButton("Salir sin guardar", (d, w) -> onDiscard.run())
                 .show();
     }
 

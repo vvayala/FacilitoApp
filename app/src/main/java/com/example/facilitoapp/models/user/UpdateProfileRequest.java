@@ -12,17 +12,20 @@ public class UpdateProfileRequest {
     @SerializedName("dui")
     private String dui;
 
-    // TODO: Implement edit text to update email
-//    @SerializedName("email")
-//    private String email;
+    @SerializedName("email")
+    private String email;
 
     @SerializedName("telephone")
     private String telephone;
 
-    public UpdateProfileRequest(String name, String lastname, String dui, String telephone) {
+    @SerializedName("address")
+    private String address;
+    public UpdateProfileRequest(String name, String lastname, String dui, String email, String telephone, String address) {
         this.name = name;
         this.lastname = lastname;
         this.dui = dui;
+        this.email = email;
         this.telephone = telephone;
+        this.address = address;
     }
 }

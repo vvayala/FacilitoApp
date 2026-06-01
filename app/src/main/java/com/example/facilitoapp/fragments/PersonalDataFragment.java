@@ -23,7 +23,7 @@ public class PersonalDataFragment extends Fragment {
 
     private RegisterViewModel viewModel;
 
-    private TextInputEditText txtNombre, txtApellido, txtTelefono, txtDui;
+    private TextInputEditText txtNombre, txtApellido, txtTelefono, txtDui, txtDireccion;
     private Button btnNext;
 
     @Override
@@ -36,6 +36,7 @@ public class PersonalDataFragment extends Fragment {
         txtApellido = view.findViewById(R.id.txtApellido);
         txtTelefono = view.findViewById(R.id.txtTelefono);
         txtDui = view.findViewById(R.id.txtDui);
+        txtDireccion = view.findViewById(R.id.txtDireccion);
         btnNext = view.findViewById(R.id.btnNext);
 
         txtTelefono.addTextChangedListener(new TextFormat(txtTelefono, Arrays.asList(4),"-"));
@@ -44,6 +45,7 @@ public class PersonalDataFragment extends Fragment {
         btnNext.setOnClickListener(v -> {
             String name = txtNombre.getText().toString().trim();
             String lastName = txtApellido.getText().toString().trim();
+            String direccion = txtDireccion.getText().toString().trim();
 
             if (name.isEmpty() || lastName.isEmpty()) {
                 Toast.makeText(getContext(), "Todos los campos son requeridos", Toast.LENGTH_SHORT).show();
@@ -52,6 +54,7 @@ public class PersonalDataFragment extends Fragment {
 
             viewModel.name.setValue(name);
             viewModel.lastName.setValue(lastName);
+            viewModel.address.setValue(direccion);
             viewModel.telephone.setValue(TextFormat.getRawValue(txtTelefono, "-"));
             viewModel.dui.setValue(TextFormat.getRawValue(txtDui, "-"));
 
