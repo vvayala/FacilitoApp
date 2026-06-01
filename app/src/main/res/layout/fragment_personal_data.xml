@@ -186,7 +186,6 @@
                             android:fontFamily="@font/inclusive_sans"
                             android:hint="@string/direccion_ejemplo"
                             android:inputType="text"
-                            android:maxLength="25"
                             android:paddingStart="14dp"
                             android:textColor="#2D2D2D"
                             android:textSize="15sp" />

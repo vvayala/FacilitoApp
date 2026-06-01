@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.facilitoapp.fragments.HomeFragment;
 import com.example.facilitoapp.fragments.MessagesFragment;
 import com.example.facilitoapp.fragments.NotificationsFragment;
+import com.example.facilitoapp.fragments.ProvidersMapFragment;
 import com.example.facilitoapp.utils.FacilitoApp;
 
 public class MainScreen extends AppCompatActivity {
@@ -69,6 +70,11 @@ public class MainScreen extends AppCompatActivity {
         navChat.setOnClickListener(v -> {
             FacilitoApp.playClick();
             loadFragment(new MessagesFragment());
+        });
+
+        navLocation.setOnClickListener(v -> {
+            FacilitoApp.playClick();
+            loadFragment(new ProvidersMapFragment());
         });
     }
 

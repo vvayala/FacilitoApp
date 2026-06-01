@@ -194,6 +194,7 @@ public class AccountCredentialsFragment extends Fragment {
                     SessionManager sessionManager = new SessionManager(requireContext());
                     sessionManager.clearSession();
                     sessionManager.saveUserId(userId);
+                    sessionManager.saveUserRoleId(loginResponse.getUser().getUserRoleId());
                     sessionManager.saveTokens(loginResponse.getAccessToken(), loginResponse.getRefreshToken());
 
                     ApiClient.reset();

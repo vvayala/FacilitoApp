@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -15,6 +17,12 @@
         android:roundIcon="@drawable/icon_main2"
         android:supportsRtl="true"
         android:theme="@style/Theme.FacilitoApp">
+
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBdfHpWFxqlN6o3Q3sxFwuRk1-6OKfV9OI" />
+
         <activity
             android:name=".MyServicesActivity"
             android:exported="false" />

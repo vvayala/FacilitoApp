@@ -69,6 +69,11 @@ public class HomeFragment extends Fragment {
     private void loadRoleAndSetupHome() {
         String savedRoleId = sessionManager.getUserRoleId();
 
+        if (savedRoleId == null) {
+            showCustomerSection();
+            return;
+        }
+
         catalogApiService.getRoles().enqueue(new Callback<RoleReponse>() {
             @Override
             public void onResponse(@NonNull Call<RoleReponse> call,
@@ -90,7 +95,7 @@ public class HomeFragment extends Fragment {
 
                 txtRoleBadge.setText(roleName);
 
-                if ("Proveedor".equals(roleName)) {
+                if ("Proveedor".equalsIgnoreCase(roleName)) {
                     showProviderSection();
                 } else {
                     showCustomerSection();

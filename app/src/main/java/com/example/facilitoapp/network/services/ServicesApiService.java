@@ -12,6 +12,9 @@ import retrofit2.http.Query;
 
 public interface ServicesApiService {
     @GET("services")
+    Call<ServiceResponse> getAllServices();
+
+    @GET("services")
     Call<ServiceResponse> getServicesByUser(@Query("user_id") String userId);
 
     @POST("services")
